@@ -1,0 +1,36 @@
+{
+  "routes":[
+    {
+      "src":"/",
+      "dest":"/"
+    },
+    {
+      "src":"/shop",
+      "dest":"/"
+    },
+    {
+      "src":"/shop/:id",
+      "dest":"/"
+    },
+    {
+      "src":"/cart",
+      "dest":"/"
+    },
+    {
+      "src":"/login",
+      "dest":"/"
+    },
+    {
+      "src":"/signup",
+      "dest":"/"
+    },
+    {
+      "src":"/checkout",
+      "dest":"/"
+    },
+    {
+      "src":"/contact",
+      "dest":"/"
+    }
+  ]
+}
