@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import "./header.css";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { Container, Row } from "reactstrap";
-import logo from "../../assets/images/eco-logo.png";
+import viqtech from "../../assets/images/Viq Tech-1.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -83,9 +83,9 @@ const Header = () => {
         <Row>
           <div className="nav__wrapper">
             <div className="logo logo__animate">
-              <img className="animate__image" src={logo} alt="logo" />
+              <img className="animate__image" src={viqtech} alt="logo" />
               <div>
-                <h1 onClick={() => navigateToCart("/")}>Viq Tech Solutions</h1>
+                <h1 onClick={() => navigateToCart("/")}>ViqTech</h1>
               </div>
             </div>
             <div className="navigation" ref={menuRef} onClick={menuToggle}>

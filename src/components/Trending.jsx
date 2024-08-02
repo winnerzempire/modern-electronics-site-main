@@ -1,32 +1,34 @@
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import heroImg from "../assets/images/hero-img.png";
 import "../styles/home.css";
 import "./AnimatedLetters";
 import "./trending.css";
 import AnimatedLetters from "./AnimatedLetters";
 import { useState, useEffect } from "react";
-import ViqTechLogo from "../assets/images/viqtech.jpg";
+import ViqTechLogo from "../assets/images/Viq_Tech.png";
 
-const Trending = ({ products, year }) => {
+const Trending = ({ products = [], year }) => {
   const [letterClass, setLetterClass] = useState("text-animate");
-  const scoreArr = products?.map((item) => parseInt(item.total_rating));
+  
+  // Ensure that products is always an array
+  const scoreArr = products.map((item) => parseInt(item.total_rating) || 0);
 
   const max_score = Math.max(...scoreArr);
-  const trending_item = products?.filter(
-    (item) => parseInt(item.total_rating) === parseInt(max_score)
+  const trending_item = products.filter(
+    (item) => parseInt(item.total_rating) === max_score
   );
 
-  const image = trending_item[0]?.imgUrl ?? products[0]?.imgUrl;
+  // Provide fallback values for image and description
+  const image = trending_item[0]?.imgUrl ?? products[0]?.imgUrl ?? "";
+  const desc = trending_item[0]?.description ?? products[0]?.description ?? "No description available";
 
-  const desc = trending_item[0]?.description ?? products[0]?.description;
   const title = "Tech it to the Next Level";
   const descArray = [];
 
   if (title) {
-    for (const i in title) {
-      descArray.push(title[i]);
+    for (const char of title) {
+      descArray.push(char);
     }
   }
 
@@ -59,7 +61,7 @@ const Trending = ({ products, year }) => {
       </Col>
       <Col lg="6" md="6">
         <div className="hero__i">
-          <img src={image} alt="heroImg" />
+          {image && <img src={image} alt="heroImg" />}
         </div>
       </Col>
     </Row>
