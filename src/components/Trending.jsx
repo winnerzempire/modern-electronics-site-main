@@ -15,12 +15,12 @@ import "slick-carousel/slick/slick-theme.css";
 const Trending = ({ products = [], year }) => {
   const [letterClass, setLetterClass] = useState("text-animate");
 
-  const scoreArr = products.map((item) => parseInt(item.total_rating) || 0);
+  const scoreArr = products.map((item) => parseInt(item?.total_rating) || 0); // Use optional chaining
   const max_score = Math.max(...scoreArr);
   const trending_item = products.filter(
-    (item) => parseInt(item.total_rating) === max_score
+    (item) => parseInt(item?.total_rating) === max_score // Use optional chaining
   );
-
+  
   const image = trending_item[0]?.imgUrl ?? products[0]?.imgUrl ?? "";
   const desc =
     trending_item[0]?.description ?? products[0]?.description ?? "No description available";
