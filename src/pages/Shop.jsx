@@ -13,7 +13,7 @@ const CategoryFilter = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http:// 192.168.156.198:8000/api/products/');
+      const response = await axios.get('http://127.0.0.1:8000/api/products/');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -22,7 +22,7 @@ const CategoryFilter = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http:// 192.168.156.198:8000/api/products/products');
+      const response = await axios.get('http://127.0.0.1:8000/api/products/products');
       setProducts(response.data);
       setProductsData(response.data);
     } catch (error) {
