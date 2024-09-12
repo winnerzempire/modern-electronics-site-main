@@ -1,0 +1,39 @@
+.slider-container {
+    /* Existing styles */
+  }
+  
+  .slide {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .slide-content-image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .slide-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .slide-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .hero__subtitle {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .buy__btn {
+    margin-top: 20px;
+  }
+  

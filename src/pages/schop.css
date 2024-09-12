@@ -1,0 +1,38 @@
+.filter-row {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adjust spacing between items */
+  }
+  
+  .filter__widget select {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgb(23, 23, 66); /* Adjust padding if needed */
+    color: white;
+  }
+  
+  .search__box {
+    display: flex;
+    align-items: center;
+    width: 70%;
+  }
+  
+  .search__box input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc; /* Adjust border if needed */
+  }
+  
+  .search__box span {
+    margin-left: 0.5rem; /* Adjust spacing if needed */
+  }
+  
+  @media (max-width: 768px) {
+    .filter-row {
+      flex-direction: column;
+    }
+  }
+  

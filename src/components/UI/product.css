@@ -1,0 +1,32 @@
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the space between cards */
+    justify-content: center; /* Center align the cards if needed */
+  }
+  
+  .product-card {
+    flex: 1 1 calc(20% - 16px); /* Adjusts the width to fit 5 cards per row (20% minus the gap) */
+    box-sizing: border-box; /* Includes padding and border in the element’s total width and height */
+    /* Add other card styles here if needed */
+  }
+  
+  /* Optionally, adjust for responsive design */
+  @media (max-width: 1200px) {
+    .product-card {
+      flex: 1 1 calc(25% - 16px); /* 4 cards per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .product-card {
+      flex: 1 1 calc(33.33% - 16px); /* 3 cards per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .product-card {
+      flex: 1 1 calc(50% - 16px); /* 2 cards per row on small screens */
+    }
+  }
+  
