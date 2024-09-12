@@ -51,38 +51,10 @@ const Home = () => {
   const [fridgeProducts, setFridgeProducts] = useState([]);
   const [gamingProducts, setGamingProducts] = useState([]);
 
-  useEffect(() => {
-    if (products.length > 0) {
-      const filteredTrendingProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "trending"
-      );
-      const filteredBestSalesProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "television"
-      );
-      const filteredMobileProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "cooker"
-      );
-      const filteredWirelessProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "sound bar and audio"
-      );
-      const filteredPopularProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "fridge"
-      );
-      const filteredProductOnOffer = products.filter(
-        (item) => item.category?.title.toLowerCase() === "offer"
-      );
+  
      
 
       // Assuming you want the first product on offer:
-      setProductOnOffer(filteredProductOnOffer[0] || null);
-      setTrendingProducts(filteredTrendingProducts);
-      setTelevisionProducts(filteredBestSalesProducts);
-      setCookerProducts(filteredMobileProducts);
-      setSoundProducts(filteredWirelessProducts);
-      setFridgeProducts(filteredPopularProducts);
-      setGamingProducts(filteredGamingProducts);
-    }
-  }, [products]);
 
   return (
     <>
