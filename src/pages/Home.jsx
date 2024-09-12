@@ -6,7 +6,6 @@ import Helmet from "../components/Helmet/Helmet";
 import ProductsList from "../components/UI/ProductsList";
 import Services from "../services/Services";
 import "../styles/home.css";
-// import products from '../assets/data/products'
 import { useDispatch, useSelector } from "react-redux";
 import counterImg from "../assets/images/counter-timer-img.png";
 import Spinner from "../components/Spinner";
@@ -31,7 +30,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("hhh", products);
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchProducts());
@@ -39,19 +37,20 @@ const Home = () => {
   }, [status, dispatch]);
 
   if (status === "loading") {
-    <Spinner />;
+    return <Spinner />;
   } else if (status === "error") {
-    <h3 className="text-center">{error}</h3>;
+    return <h3 className="text-center">{error}</h3>;
   }
 
   const year = new Date().getFullYear();
-  const [productOnOffer, setProductOnOffer] = useState([]);
+  const [productOnOffer, setProductOnOffer] = useState(null);
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [televisionProducts, setTelevisionProducts] = useState([]);
   const [cookerProducts, setCookerProducts] = useState([]);
   const [soundProducts, setSoundProducts] = useState([]);
   const [fridgeProducts, setFridgeProducts] = useState([]);
   const [gamingProducts, setGamingProducts] = useState([]);
+
   useEffect(() => {
     if (products.length > 0) {
       const filteredTrendingProducts = products.filter(
@@ -72,11 +71,12 @@ const Home = () => {
       const filteredProductOnOffer = products.filter(
         (item) => item.category?.title.toLowerCase() === "offer"
       );
-
       const filteredGamingProducts = products.filter(
         (item) => item.category?.title.toLowerCase() === "gaming"
       );
-      setProductOnOffer(filteredProductOnOffer[0]);
+
+      // Assuming you want the first product on offer:
+      setProductOnOffer(filteredProductOnOffer[0] || null);
       setTrendingProducts(filteredTrendingProducts);
       setTelevisionProducts(filteredBestSalesProducts);
       setCookerProducts(filteredMobileProducts);
@@ -88,7 +88,6 @@ const Home = () => {
 
   return (
     <>
-      {" "}
       {products.length > 0 ? (
         <Helmet title={"Home"}>
           <section className="hero__section">
@@ -120,12 +119,8 @@ const Home = () => {
           <section className="new__arrivals">
             <Container>
               <Row className="d-flex flex-sm-column flex-md-row align-items-center justify-content-between gap-5">
-                {cookerProducts.length > 0 && (
-                  <Cookers cooker={cookerProducts} />
-                )}
-                {soundProducts.length > 0 && (
-                  <SoundBarAndAudio soundItem={soundProducts} />
-                )}
+                {cookerProducts.length > 0 && <Cookers cooker={cookerProducts} />}
+                {soundProducts.length > 0 && <SoundBarAndAudio soundItem={soundProducts} />}
               </Row>
             </Container>
           </section>
