@@ -71,9 +71,7 @@ const Home = () => {
       const filteredProductOnOffer = products.filter(
         (item) => item.category?.title.toLowerCase() === "offer"
       );
-      const filteredGamingProducts = products.filter(
-        (item) => item.category?.title.toLowerCase() === "gaming"
-      );
+     
 
       // Assuming you want the first product on offer:
       setProductOnOffer(filteredProductOnOffer[0] || null);
