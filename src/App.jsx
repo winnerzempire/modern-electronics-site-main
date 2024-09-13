@@ -22,10 +22,12 @@ import { useEffect } from "react";
 import { redirect } from "react-router-dom";
 import Contact from "./components/Contact";
 import "./components/Contact/index.scss";
+import AdminPage from './AdminPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+      <Route path="/admin" element={<AdminPage />} />
       <Route index element={<Home />} />
       <Route path="Shop" element={<Shop />} />
       <Route path="shop/:id" element={<ProductDetails />} />
