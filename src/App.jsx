@@ -22,7 +22,7 @@ import { useEffect } from "react";
 import { redirect } from "react-router-dom";
 import Contact from "./components/Contact";
 import "./components/Contact/index.scss";
-import AdminPage from './AdminPage';
+import AdminPage from './pages/Admin';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
