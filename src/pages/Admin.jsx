@@ -9,7 +9,7 @@ function AdminPage() {
 
   useEffect(() => {
     // Fetch data from an API or perform other admin tasks
-    axios.get('/api/admin-data')
+    axios.get('http://127.0.0.1:8000/api/users/')
       .then(response => {
         setData(response.data);
         setLoading(false);
