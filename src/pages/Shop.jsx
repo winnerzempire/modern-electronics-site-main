@@ -13,7 +13,7 @@ const CategoryFilter = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/products/');
+      const response = await axios.get('http://viqtech.co.ke/api/products/');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
