@@ -13,10 +13,16 @@ const CategoryFilter = () => {
 
   const fetchCategories = async () => {
     try {
+      // Retrieve the token from localStorage (or any other storage mechanism you're using)
+    const token = localStorage.getItem('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MzE5ODk1LCJpYXQiOjE3MjYzMTk1OTUsImp0aSI6ImVhMTFiY2M4NWI2YjQzN2NiZWU3MGVhMGYzMjQ5YjhlIiwidXNlcl9pZCI6Mn0.fHxfK-5-bVK67HXvnc5vIxwv0i4uA4rd4L-rnQzFkuw');
+    
+    if (!token) {
+      throw new Error('No token found');
+    }
       
       const response = await axios.get('http://viqtech.co.ke/api/products/', {
         headers: {
-          'Authorization': `Bearer ${eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MzE5ODk1LCJpYXQiOjE3MjYzMTk1OTUsImp0aSI6ImVhMTFiY2M4NWI2YjQzN2NiZWU3MGVhMGYzMjQ5YjhlIiwidXNlcl9pZCI6Mn0.fHxfK-5-bVK67HXvnc5vIxwv0i4uA4rd4L-rnQzFkuw}`, // Replace `yourToken` with the actual token
+          'Authorization': `Bearer ${token}`
         },
       });
       setCategories(response.data);
