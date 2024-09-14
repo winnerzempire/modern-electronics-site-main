@@ -11,7 +11,7 @@ const ProductsList = ({ searchTerm }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://viqtech.co.ke/api/products/categories/');
+        const response = await axios.get('https://viqtech.co.ke/api/products/products/');
         setData(response.data);
       } catch (err) {
         setError(err);

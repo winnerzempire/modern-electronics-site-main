@@ -13,12 +13,17 @@ const CategoryFilter = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://viqtech.co.ke/api/products/');
+      const response = await axios.get('http://viqtech.co.ke/api/products/', {
+        headers: {
+          'Authorization': `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MzE5ODk1LCJpYXQiOjE3MjYzMTk1OTUsImp0aSI6ImVhMTFiY2M4NWI2YjQzN2NiZWU3MGVhMGYzMjQ5YjhlIiwidXNlcl9pZCI6Mn0.fHxfK-5-bVK67HXvnc5vIxwv0i4uA4rd4L-rnQzFkuw"}`, // Replace `yourToken` with the actual token
+        },
+      });
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
   };
+  
 
   const fetchProducts = async () => {
     try {
