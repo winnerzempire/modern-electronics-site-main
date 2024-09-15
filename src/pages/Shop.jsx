@@ -20,7 +20,7 @@ const CategoryFilter = () => {
       throw new Error('No token found');
     }
       
-      const response = await axios.get('http://viqtech.co.ke/api/products/', {
+      const response = await axios.get('https://viqtech.co.ke/api/products/', {
         headers: {
           'Authorization': `Bearer ${token}`
         },
