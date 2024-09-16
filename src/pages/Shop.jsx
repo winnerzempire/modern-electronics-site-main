@@ -34,7 +34,7 @@ const CategoryFilter = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/products/products');
+      const response = await axios.get('https://viqtech.co.ke/api/products/products');
       setProducts(response.data);
       setProductsData(response.data);
     } catch (error) {
@@ -55,7 +55,7 @@ const CategoryFilter = () => {
 
     if (category) {
       try {
-        const response = await axios.get(`http:// 192.168.156.198:8000/api/products/products/${category}`);
+        const response = await axios.get(`http://192.168.156.198:8000/api/products/products/${category}`);
         filteredProducts = response.data;
       } catch (error) {
         console.error('Error fetching products by category:', error);
