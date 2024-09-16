@@ -11,25 +11,38 @@ const CategoryFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const storeToken = (token) => {
+    localStorage.setItem('authToken', token); // Store the token with a key
+  };
+  
   const fetchCategories = async () => {
     try {
-      // Retrieve the token from localStorage (or any other storage mechanism you're using)
-    const token = localStorage.getItem('authToken');
-    
-    if (!token) {
-      throw new Error('No token found');
-    }
+      // Example token - replace this with your actual token retrieval logic
+      const exampleToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MzE5ODk1LCJpYXQiOjE3MjYzMTk1OTUsImp0aSI6ImVhMTFiY2M4NWI2YjQzN2NiZWU3MGVhMGYzMjQ5YjhlIiwidXNlcl9pZCI6Mn0.fHxfK-5-bVK67HXvnc5vIxwv0i4uA4rd4L-rnQzFkuw';
       
+      storeToken(exampleToken); // Store the token in localStorage
+  
+      // Retrieve the token from localStorage
+      const token = localStorage.getItem('authToken');
+  
+      if (!token) {
+        throw new Error('No token found');
+      }
+  
+      // Make the API request with the token
       const response = await axios.get('https://viqtech.co.ke/api/products/', {
         headers: {
           'Authorization': `Bearer ${token}`
         },
       });
+  
+      // Set the categories data
       setCategories(response.data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error('Error fetching categories:', error.message || error);
     }
   };
+  
   
 
   const fetchProducts = async () => {
