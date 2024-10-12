@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://viqtech.co.ke', // Django API URL
+        target: 'https://api.viqtech.co.ke', // Django API URL
         changeOrigin: true, // Modify the origin header to the target URL
         secure: false, // Set to true if using https
         rewrite: (path) => path.replace(/^\/api/, ''), // Rewrite the /api path
