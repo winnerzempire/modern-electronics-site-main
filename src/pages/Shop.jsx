@@ -30,7 +30,7 @@ const CategoryFilter = () => {
       }
   
       // Make the API request with the token
-      const response = await axios.get('https://127.0.0.1:8000//api/products/', {
+      const response = await axios.get('https://127.0.0.1:8000/api/products/', {
         headers: {
           'Authorization': `Bearer ${token}`
         },
@@ -47,7 +47,7 @@ const CategoryFilter = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://viqtech.co.ke/api/products/products');
+      const response = await axios.get('https://viqtech.co.ke/api/products/products/');
       setProducts(response.data);
       setProductsData(response.data);
     } catch (error) {
