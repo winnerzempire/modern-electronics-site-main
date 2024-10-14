@@ -30,7 +30,7 @@ const CategoryFilter = () => {
       }
   
       // Make the API request with the token
-      const response = await axios.get('https://viqtech.co.ke:80/api/products/', {
+      const response = await axios.get('https://viqtech.co.ke:8000/api/products/', {
         headers: {
           'Authorization': `Bearer ${token}`
         },
