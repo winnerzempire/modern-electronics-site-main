@@ -36,7 +36,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://viqtech.co.ke/api/products/products/${id}`); // Make sure the endpoint matches your backend setup
+        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`); // Make sure the endpoint matches your backend setup
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
