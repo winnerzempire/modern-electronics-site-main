@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="logo">
               <div className="viqTechLogo">
                 <img src={viqtechLogo} alt="logo" />
-                <h1 className="text-white mt-2">Viq Tech Solutions</h1>
+                <h1 className="text-white mt-2">ViqTech</h1>
               </div>
             </div>
           </Col>

@@ -19,9 +19,15 @@ const nav__link = [
     path: ".",
     display: "Home",
   },
+
   {
     path: "shop",
     display: "Shop",
+  },
+
+  {
+    path: "service",
+    display: "Services",
   },
   {
     path: "cart",

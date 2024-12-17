@@ -3,7 +3,6 @@
  import Helmet from '../components/Helmet/Helmet'
  import CommonSection from '../components/UI/CommonSection'
  import {Container, Row,Col} from 'reactstrap'
- import tdImg from '../assets/images/arm-chair-01.jpg'
  import {motion} from 'framer-motion'
  import {Link} from 'react-router-dom'
  import {addItem, cartItems, deleteItem, totalAmount} from '../redux/slices/cartSlice'

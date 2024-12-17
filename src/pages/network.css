@@ -1,0 +1,119 @@
+.section {
+    display: flex;
+    flex-direction: row; /* Places the heading to the right */
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px; /* Adds spacing between the elements */
+    padding: 20px;
+    border: 1px solid #ddd; /* Optional: For visual clarity */
+    background-color: #f9f9f9; /* Optional: Background color */
+  }
+  
+  .section h2 {
+    margin: 0;
+    font-size: 3rem;
+    color: black;
+    text-align: left; /* Aligns the heading's text to the right */
+    font-weight: 700;
+  }
+  
+  .section p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: black;
+    max-width: 60%; /* Ensures the paragraph doesn't stretch too wide */
+  }
+  .hsia {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.hsia img {
+    width: 600px; /* Adjust the size of the image */
+    height: auto;
+    margin-right: 20px; /* Space between image and text */
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.text-container h3 {
+    color: #ff6a13; /* International Orange color */
+    font-size: 24px;
+    margin: 0;
+    
+}
+
+.text-container p {
+    font-size: 16px;
+    color: black; /* Text color */
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+.structured {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.text-container h3 {
+    color: #ff6a13; /* International Orange color */
+    font-size: 24px;
+    margin: 0;
+}
+
+.text-container p {
+    font-size: 16px;
+    color: #333; /* Text color */
+    line-height: 1.6;
+    margin-top: 10px;
+    max-width: 500px; /* Control paragraph width */
+}
+
+.structured img {
+    width: 600px; /* Set image width */
+    height: auto;
+    margin-left: 20px; /* Space between text and image */
+    border-radius: 20px;
+}
+.ip-telephony {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.ip-telephony img {
+    width: 600px; /* Adjust the image width */
+    height: auto;
+    margin-right: 20px; /* Space between image and text */
+    border-radius: 20px;
+}
+
+.text-container h3 {
+    color: #ff6a13; /* International Orange color */
+    font-size: 24px;
+    margin: 0;
+}
+
+.text-container p {
+    font-size: 16px;
+    color: black; /* Text color */
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.text-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.text-container ul li {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 5px;
+}

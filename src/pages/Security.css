@@ -1,0 +1,343 @@
+.image-text-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional background color for the section */
+  }
+  
+  .image-text-section .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .image-text-section .image-container {
+    flex: 1;
+    min-width: 600px;
+    text-align: center;
+  }
+  
+  .image-text-section .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the image */
+  }
+  
+  .image-text-section .text-container {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+  }
+  
+  .image-text-section .text-container h2 {
+    color: #ff4f00; /* International Orange */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .image-text-section .text-container p {
+    color: #333; /* Text color */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .image-text-section .container {
+      flex-direction: column;
+    }
+    .image-text-section .image-container,
+    .image-text-section .text-container {
+      flex: 1 1 100%;
+    }
+  }
+
+  .videowalls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional background color for the section */
+  }
+  
+  .videowalls .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .videowalls .image-container {
+    flex: 1;
+    min-width: 600px;
+    text-align: center;
+    order: 2; /* Moves the image to the right */
+  }
+  
+  .videowalls .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the image */
+  }
+  
+  .videowalls .text-container {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+    order: 1; /* Moves the text to the left */
+  }
+  
+  .videowalls .text-container h2 {
+    color: #ff4f00; /* International Orange */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .videowalls .text-container p {
+    color: #333; /* Text color */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .videowalls .container {
+      flex-direction: column;
+    }
+    .videowalls .image-container,
+    .videowalls .text-container {
+      flex: 1 1 100%;
+      order: initial; /* Resets order for stacked layout */
+    }
+  }
+
+  .bgm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional background color for the section */
+  }
+  
+  .bgm .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .bgm .image-container {
+    flex: 1;
+    min-width: 600px;
+    text-align: center;
+    order: 1; /* Ensures the image stays on the left */
+  }
+  
+  .bgm .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the image */
+  }
+  
+  .bgm .text-container {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+    order: 2; /* Ensures the text stays on the right */
+  }
+  
+  .bgm .text-container h2 {
+    color: #ff4f00; /* International Orange */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .bgm .text-container p {
+    color: #333; /* Text color */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .bgm .container {
+      flex-direction: column;
+    }
+    .bgm .image-container,
+    .bgm .text-container {
+      flex: 1 1 100%;
+      order: initial; /* Resets order for stacked layout */
+    }
+  }
+
+  .display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional background color for the section */
+  }
+  
+  .display .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .display .image-container {
+    flex: 1;
+    min-width: 600px;
+    text-align: center;
+    order: 2; /* Ensures the image is on the right */
+  }
+  
+  .display .image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for the image */
+  }
+  
+  .display .text-container {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+    order: 1; /* Ensures the text is on the left */
+  }
+  
+  .display .text-container h2 {
+    color: #ff4f00; /* International Orange */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .display .text-container p {
+    color: #333; /* Text color */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .display .container {
+      flex-direction: column;
+    }
+    .display .image-container,
+    .display .text-container {
+      flex: 1 1 100%;
+      order: initial; /* Resets order for stacked layout */
+    }
+  }
+
+  .solutions {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .text-solutions h2 {
+    margin-bottom: 10px; /* Adds spacing between the h2 and p tag */
+    text-align: center;
+  }
+  
+  .text-solutions p {
+    margin-top: 0; /* Removes any extra margin on top of the paragraph */
+  }
+  
+
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows images to wrap if there are many */
+    gap: 20px; /* Adds space between the images */
+    padding: 20px; /* Space inside the container */
+    border-radius: 15px; /* Rounded corners for the background */
+    position: relative;
+    min-height: 20vh; /* Minimum height for the background */
+  }
+  
+  .image img {
+    max-width: 100px; /* Adjust image size as needed */
+    height: auto;
+    border: 1px solid #ddd; /* Adds a subtle border to the images */
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+    background-color: lightgray; /* White background for the images */
+    padding: 20px; /* Space inside the image border */
+  }
+
+
+  .image-container h2 {
+    color: #FF4F00; /* International Orange (Aerospace) */
+    font-weight: 500;
+    font-size: 3rem;
+  }
+  
+  p {
+    text-align: left; /* Align paragraph text to the left */
+    margin-bottom: 20px; /* Add spacing between paragraphs */
+    line-height: 1.6; /* Improve readability with proper line height */
+    color: black;
+  }
+
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background: url('https://www.microhire.com.au/wp-content/uploads/2017/01/av-products-hero-main-hero-870x300.jpg') center/cover no-repeat;
+    height: 50vh;
+    color: #333;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.8); /* Optional for better text visibility */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ff6347;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-button {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-button:hover {
+    background-color: #e5533d;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
+  
+  
+  
+  
