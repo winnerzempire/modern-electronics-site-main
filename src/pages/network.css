@@ -24,96 +24,113 @@
     color: black;
     max-width: 60%; /* Ensures the paragraph doesn't stretch too wide */
   }
+  
   .hsia {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-}
-
-.hsia img {
+  }
+  
+  .hsia img {
     width: 600px; /* Adjust the size of the image */
     height: auto;
     margin-right: 20px; /* Space between image and text */
     margin-top: 20px;
     border-radius: 20px;
-}
-
-.text-container h3 {
+  }
+  
+  .text-container h3 {
     color: #ff6a13; /* International Orange color */
     font-size: 24px;
     margin: 0;
-    
-}
-
-.text-container p {
+  }
+  
+  .text-container p {
     font-size: 16px;
     color: black; /* Text color */
     line-height: 1.5;
     margin-top: 20px;
-}
-
-.structured {
+  }
+  
+  .structured {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-}
-
-.text-container h3 {
-    color: #ff6a13; /* International Orange color */
-    font-size: 24px;
-    margin: 0;
-}
-
-.text-container p {
-    font-size: 16px;
-    color: #333; /* Text color */
-    line-height: 1.6;
-    margin-top: 10px;
-    max-width: 500px; /* Control paragraph width */
-}
-
-.structured img {
+  }
+  
+  .structured img {
     width: 600px; /* Set image width */
     height: auto;
     margin-left: 20px; /* Space between text and image */
     border-radius: 20px;
-}
-.ip-telephony {
+  }
+  
+  .ip-telephony {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 20px;
-}
-
-.ip-telephony img {
+  }
+  
+  .ip-telephony img {
     width: 600px; /* Adjust the image width */
     height: auto;
     margin-right: 20px; /* Space between image and text */
     border-radius: 20px;
-}
-
-.text-container h3 {
-    color: #ff6a13; /* International Orange color */
-    font-size: 24px;
-    margin: 0;
-}
-
-.text-container p {
-    font-size: 16px;
-    color: black; /* Text color */
-    line-height: 1.6;
-    margin-top: 10px;
-}
-
-.text-container ul {
+  }
+  
+  .text-container ul {
     list-style-type: none;
     padding-left: 0;
-}
-
-.text-container ul li {
+  }
+  
+  .text-container ul li {
     font-size: 16px;
     color: black;
     margin-bottom: 5px;
-}
+  }
+  
+  /* Media Queries for Small Screens */
+  @media screen and (max-width: 768px) {
+    .section {
+      flex-direction: column; /* Stacks elements vertically */
+      align-items: flex-start;
+      gap: 20px; /* Reduces spacing */
+    }
+  
+    .section h2 {
+      font-size: 2rem; /* Adjusts heading size */
+    }
+  
+    .section p {
+      max-width: 100%; /* Allows full width */
+    }
+  
+    .hsia, .structured, .ip-telephony {
+      flex-direction: column; /* Stacks text and image */
+      align-items: center; /* Centers content */
+      gap: 20px;
+    }
+  
+    .hsia img, .structured img, .ip-telephony img {
+      width: 100%; /* Responsive images */
+      max-width: 400px; /* Limit image width */
+    }
+  
+    .text-container h3 {
+      font-size: 20px; /* Adjusts heading size */
+      text-align: center; /* Centers text */
+    }
+  
+    .text-container p {
+      font-size: 14px; /* Adjusts text size */
+      text-align: center;
+    }
+  
+    .text-container ul li {
+      font-size: 14px; /* Adjusts list item size */
+    }
+  }
+  
