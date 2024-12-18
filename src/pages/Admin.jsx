@@ -7,7 +7,7 @@ function AdminPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = "your_token_here"; // Make sure this token is valid
+    const token = localStorage.getItem('authToken'); // Replace with your token retrieval method
 
     console.log("Authorization Header:", `Bearer ${token}`); // Debug log
 
@@ -18,27 +18,36 @@ function AdminPage() {
         },
       })
       .then(response => {
-        setData(response.data);
+        if (Array.isArray(response.data)) {
+          setData(response.data);
+        } else {
+          console.error("Unexpected response format:", response.data);
+          setError("Unexpected response format");
+        }
         setLoading(false);
       })
       .catch(err => {
-        // Handle the error gracefully
-        setError(err.response ? err.response.data.detail : err.message);
+        console.error("Error fetching admin data:", err);
+        setError(err.response ? err.response.data.detail || "An error occurred" : err.message);
         setLoading(false);
       });
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;  {/* Simplified error display */}
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
-      <h1>Admin Page</h1>
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
+      <h1>Admin Dashboard</h1>
+      {data.length === 0 ? (
+        <p>No data available</p>
+      ) : (
+        <ul>
+          {data.map(item => (
+            <li key={item.id}>{item.name || "Unnamed Item"}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
