@@ -34,7 +34,7 @@ import Security from './pages/Security'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="/admin" element={<AdminPage />} />
+      {/* <Route path="/admin" element={<AdminPage />} /> */}
       <Route index element={<Home />} />
       <Route path="Shop" element={<Shop />} />
       <Route path="Service" element={<Services/>} />
