@@ -52,9 +52,9 @@
   transition: opacity 0.3s ease;
 }
 
-.service-card:hover .overlay {
+/* .service-card:hover .overlay {
   opacity: 1; /* Show on hover */
-}
+/* } */ */
 
 /* Title Styling */
 .service-card .overlay h2 {
@@ -64,10 +64,10 @@
 }
 
 /* Description Styling */
-/* .service-card .overlay p {
+.service-card .overlay p {
   font-size: 1rem;
   margin: 0;
-} */
+}
 
 /* Media Queries for Smaller Screens */
 @media screen and (max-width: 1024px) {
