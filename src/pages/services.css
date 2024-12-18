@@ -1,71 +1,121 @@
 /* Service Page Container */
 .service-page {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  /* Services Grid Layout */
+  text-align: center;
+  padding: 20px;
+}
+
+/* Services Grid Layout */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Ensures 3 cards per row */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Service Card Styling */
+.service-card {
+  position: relative; /* Enable positioning for overlay */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Ensure content stays within the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Enhance hover shadow */
+}
+
+/* Image Styling */
+.service-card .service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Overlay Styling */
+.service-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .overlay {
+  opacity: 1; /* Show on hover */
+}
+
+/* Title Styling */
+.service-card .overlay h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Description Styling */
+.service-card .overlay p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Media Queries for Smaller Screens */
+@media screen and (max-width: 1024px) {
   .services-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Ensures 3 cards per row */
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
   }
-  
-  /* Service Card Styling */
-  .service-card {
-    position: relative; /* Enable positioning for overlay */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden; /* Ensure content stays within the card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .service-card:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Enhance hover shadow */
-  }
-  
-  /* Image Styling */
-  .service-card .service-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  /* Overlay Styling */
-  .service-card .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease;
-  }
-  
-  .service-card:hover .overlay {
-    opacity: 1; /* Show on hover */
-  }
-  
-  /* Title Styling */
+
   .service-card .overlay h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 1.3rem; /* Adjust title size */
   }
-  
-  /* Description Styling */
+
   .service-card .overlay p {
-    font-size: 1rem;
-    margin: 0;
+    font-size: 0.9rem; /* Adjust description size */
   }
-  
+}
+
+@media screen and (max-width: 768px) {
+  .services-container {
+    grid-template-columns: 1fr; /* 1 card per row */
+  }
+
+  .service-card .overlay h2 {
+    font-size: 1.2rem; /* Further adjust title size */
+  }
+
+  .service-card .overlay p {
+    font-size: 0.8rem; /* Further adjust description size */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .service-page {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+
+  .services-container {
+    gap: 10px; /* Reduce gap between cards */
+  }
+
+  .service-card {
+    border-radius: 6px; /* Slightly smaller border radius */
+  }
+
+  .service-card .overlay h2 {
+    font-size: 1rem; /* Scale title size down */
+  }
+
+  .service-card .overlay p {
+    font-size: 0.75rem; /* Scale description size down */
+  }
+}
