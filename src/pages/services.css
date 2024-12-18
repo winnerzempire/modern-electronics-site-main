@@ -16,7 +16,7 @@
 .service-card {
   position: relative; /* Enable positioning for overlay */
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 20px;
   overflow: hidden; /* Ensure content stays within the card */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
