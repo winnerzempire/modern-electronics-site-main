@@ -12,7 +12,7 @@ function AdminPage() {
     console.log("Authorization Header:", `Bearer ${token}`); // Debug log
 
     axios
-      .get('https://viqtech.co.ke/admin/', {
+      .get('https://viqtech.co.ke/api/admin/', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
