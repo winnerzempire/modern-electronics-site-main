@@ -64,10 +64,10 @@
 }
 
 /* Description Styling */
-.service-card .overlay p {
+/* .service-card .overlay p {
   font-size: 1rem;
   margin: 0;
-}
+} */
 
 /* Media Queries for Smaller Screens */
 @media screen and (max-width: 1024px) {
