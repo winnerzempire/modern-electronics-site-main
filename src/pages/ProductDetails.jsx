@@ -133,13 +133,10 @@ const ProductDetails = () => {
                 </div>
               </div>
             </Col>
-            <Col lg="12" className='mt-5'>
-              <h2 className='related__title'>You might also like</h2>
-            </Col>
-            <ProductsList data={relatedProducts} />
           </Row>
         </Container>
       </section>
+
       <section>
         <Container>
           <Row>
@@ -186,6 +183,10 @@ const ProductDetails = () => {
                   </div>
                 </div>
               )}
+              <Col lg="12" className='mt-5'>
+                <h2 className='related__title'>You might also like</h2>
+              </Col>
+              <ProductsList data={relatedProducts} />
             </Col>
           </Row>
         </Container>
