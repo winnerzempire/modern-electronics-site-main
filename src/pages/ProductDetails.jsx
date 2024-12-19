@@ -36,7 +36,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`); // Make sure the endpoint matches your backend setup
+        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
@@ -70,16 +70,7 @@ const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const {
-    imgUrl,
-    productName,
-    price,
-    total_rating,
-    reviews,
-    description,
-    shortDesc,
-    category
-  } = product;
+  const { imgUrl, productName, price, total_rating, reviews, description, shortDesc, category } = product;
 
   const addToCart = () => {
     dispatch(addItem({
