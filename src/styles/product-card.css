@@ -33,7 +33,7 @@
     transform: scale(1.1);
   }
   
-  .product__badge {
+  /* .product__badge {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -41,7 +41,7 @@
     font-size: 0.75rem;
     font-weight: bold;
     border-radius: 12px;
-  }
+  } */
   
   /* Product Info Section */
   .product__info {
