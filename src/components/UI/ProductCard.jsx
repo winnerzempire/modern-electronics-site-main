@@ -47,7 +47,7 @@ const ProductCard = ({ item }) => {
         {/* Product Details */}
         <div className="product__info p-3 text-center">
           {/* Product Name */}
-          <h5 className="product__name mb-2">{item.productName}</h5>
+          <h5 className="product__name mb-2">{productName}</h5>
 
           {/* Product Price */}
           <PriceFormat price={item.price} className="product__price mb-3" />
