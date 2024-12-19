@@ -32,11 +32,10 @@ const ProductDetails = () => {
   const [reviewData, setReview] = useState([]);
   const item_id = parseInt(id);
 
-  // Fetching product data
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`); // Make sure the endpoint matches your backend setup
+        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
@@ -70,16 +69,7 @@ const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const {
-    imgUrl,
-    productName,
-    price,
-    total_rating,
-    reviews,
-    description,
-    shortDesc,
-    category
-  } = product;
+  const { imgUrl, productName, price, total_rating, reviews, description, shortDesc, category } = product;
 
   const addToCart = () => {
     dispatch(addItem({
@@ -95,7 +85,6 @@ const ProductDetails = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     const reviewUserMsg = reviewMsg?.current.value;
     const reviewObj = {
       userName: reviewUser.current.value,
@@ -128,38 +117,17 @@ const ProductDetails = () => {
             </Col>
             <Col lg="6">
               <div className="d-flex flex-column p-3 product__details">
-                {/* Product Name */}
                 <h2>{productName}</h2>
-
-                {/* Product Price */}
                 <div className="d-flex align-items-center gap-5">
                   <span className="product__price"><PriceFormat price={price} /></span>
                 </div>
-
-                {/* Product Description */}
                 <p className="mt-3">{shortDesc}</p>
-
-                {/* Product Category */}
                 <div>
                   <span>Category: {category?.title.toUpperCase()}</span>
                 </div>
-
-                {/* Quantity and Add to Cart Button */}
                 <div className="d-flex align-items-center gap-3 mt-4">
-                  {/* Quantity Input */}
-                  <input
-                    type="number"
-                    min="1"
-                    defaultValue="1"
-                    className="quantity__input"
-                  />
-
-                  {/* Add to Cart Button */}
-                  <motion.button
-                    whileTap={{ scale: 1.1 }}
-                    className="buy__btn"
-                    onClick={addToCart}
-                  >
+                  <input type="number" min="1" defaultValue="1" className="quantity__input" />
+                  <motion.button whileTap={{ scale: 1.1 }} className="buy__btn" onClick={addToCart}>
                     Add to Cart
                   </motion.button>
                 </div>
@@ -180,48 +148,44 @@ const ProductDetails = () => {
                 <h6 className={`${tab === "desc" ? "active__tab" : ""}`} onClick={() => setTab("desc")}>Description</h6>
                 <h6 className={`${tab === "rev" ? "active__tab" : ""}`} onClick={() => setTab("rev")}>Reviews ({reviewData.length})</h6>
               </div>
-              {
-                tab === 'desc' ? (
-                  <div className="tab__content mt-5">
-                    {description}
-                  </div>
-                ) : (
-                  <div className='product__review mt-5'>
-                    <div className="review__wrapper">
-                      <ul>
-                        {
-                          reviewData.map((item, index) => (
-                            <li key={index} className='mt-4'>
-                              <h6>{item?.userName}</h6>
-                              <span>{item?.rating} (average rating)</span>
-                              <p>{item?.text}</p>
-                            </li>
-                          ))
-                        }
-                      </ul>
-                      <div className="review__form">
-                        <h4>Leave your experience</h4>
-                        <form onSubmit={submitHandler}>
-                          <div className="form__group">
-                            <input type="text" required placeholder='Enter name' ref={reviewUser} />
-                          </div>
-                          <div className="form__group d-flex align-items-center gap-5 rating__group">
-                            {[1, 2, 3, 4, 5].map((num) => (
-                              <motion.span key={num} whileTap={{ scale: 1.2 }} onClick={() => setRating(num)}>
-                                {num}<i className="ri-star-s-fill"></i>
-                              </motion.span>
-                            ))}
-                          </div>
-                          <div className="form__group">
-                            <textarea rows={4} type="text" required placeholder='Review message...' ref={reviewMsg} />
-                          </div>
-                          <motion.button whileTap={{ scale: 1.2 }} type="submit" className="buy__btn">{loading ? "Submitting..." : "Submit"}</motion.button>
-                        </form>
-                      </div>
+              {tab === 'desc' ? (
+                <div className="tab__content mt-5">
+                  {description}
+                </div>
+              ) : (
+                <div className='product__review mt-5'>
+                  <div className="review__wrapper">
+                    <ul>
+                      {reviewData.map((item, index) => (
+                        <li key={index} className='mt-4'>
+                          <h6>{item?.userName}</h6>
+                          <span>{item?.rating} (average rating)</span>
+                          <p>{item?.text}</p>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="review__form">
+                      <h4>Leave your experience</h4>
+                      <form onSubmit={submitHandler}>
+                        <div className="form__group">
+                          <input type="text" required placeholder='Enter name' ref={reviewUser} />
+                        </div>
+                        <div className="form__group d-flex align-items-center gap-5 rating__group">
+                          {[1, 2, 3, 4, 5].map((num) => (
+                            <motion.span key={num} whileTap={{ scale: 1.2 }} onClick={() => setRating(num)}>
+                              {num}<i className="ri-star-s-fill"></i>
+                            </motion.span>
+                          ))}
+                        </div>
+                        <div className="form__group">
+                          <textarea rows={4} type="text" required placeholder='Review message...' ref={reviewMsg} />
+                        </div>
+                        <motion.button whileTap={{ scale: 1.2 }} type="submit" className="buy__btn">{loading ? "Submitting..." : "Submit"}</motion.button>
+                      </form>
                     </div>
                   </div>
-                )
-              }
+                </div>
+              )}
             </Col>
           </Row>
         </Container>
