@@ -31,6 +31,7 @@ const ProductCard = ({ item }) => {
         whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)" }}
         className="product__card shadow-sm rounded overflow-hidden"
       >
+        {/* Product Image */}
         <div className="product__image-wrapper position-relative">
           <Link to={`/shop/${item.id}`} className="product__image-link">
             <motion.img
@@ -43,21 +44,16 @@ const ProductCard = ({ item }) => {
           <span className="product__badge badge bg-primary text-white">New</span>
         </div>
 
-        <div className="product__info p-3">
-          <h5 className="product__name text-truncate mb-2">{item.productName}</h5>
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <PriceFormat price={item.price} />
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              className="btn btn-sm btn-outline-primary rounded-pill"
-              onClick={addToCart}
-              aria-label={`Add ${item.productName} to cart`}
-            >
-              <i className="ri-add-line"></i> Add
-            </motion.button>
-          </div>
+        {/* Product Details */}
+        <div className="product__info p-3 text-center">
+          {/* Product Name */}
+          <h5 className="product__name mb-2">{item.productName}</h5>
 
-          <div className="text-center mt-2">
+          {/* Product Price */}
+          <PriceFormat price={item.price} className="product__price mb-3" />
+
+          {/* Buttons */}
+          <div className="d-flex flex-column gap-2">
             {isAuthenticated ? (
               <Link
                 to={`/shop/${item.id}`}
@@ -76,6 +72,15 @@ const ProductCard = ({ item }) => {
                 Log in to View
               </Link>
             )}
+
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className="btn btn-sm btn-outline-primary rounded-pill"
+              onClick={addToCart}
+              aria-label={`Add ${item.productName} to cart`}
+            >
+              <i className="ri-add-line"></i> Add to Cart
+            </motion.button>
           </div>
         </div>
       </motion.div>
