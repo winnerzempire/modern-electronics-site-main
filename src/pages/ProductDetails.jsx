@@ -36,7 +36,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`);
+        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`); // Make sure the endpoint matches your backend setup
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
@@ -70,7 +70,16 @@ const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const { imgUrl, productName, price, total_rating, reviews, description, shortDesc, category } = product;
+  const {
+    imgUrl,
+    productName,
+    price,
+    total_rating,
+    reviews,
+    description,
+    shortDesc,
+    category
+  } = product;
 
   const addToCart = () => {
     dispatch(addItem({
@@ -119,21 +128,41 @@ const ProductDetails = () => {
             </Col>
             <Col lg="6">
               <div className="d-flex flex-column p-3 product__details">
+                {/* Product Name */}
                 <h2>{productName}</h2>
-                <div className="product__rating d-flex align-items-center gap-5 mb-3">
-                  <div className="d-flex flex-column align-items-center justify-content-center">
-                    <Stars total_rating={total_rating} />
-                    <p>
-                      (<span>{total_rating}</span>) ratings
-                    </p>
-                  </div>
+
+                {/* Product Price */}
+                <div className="d-flex align-items-center gap-5">
+                  <span className="product__price"><PriceFormat price={price} /></span>
                 </div>
-                <div className='d-flex align-items-center gap-5'>
-                  <span className='product__price'><PriceFormat price={price} /></span>
+
+                {/* Product Description */}
+                <p className="mt-3">{shortDesc}</p>
+
+                {/* Product Category */}
+                <div>
                   <span>Category: {category?.title.toUpperCase()}</span>
                 </div>
-                <p className='mt-3'>{shortDesc}</p>
-                <motion.button whileTap={{ scale: 1.1 }} className="buy__btn" onClick={addToCart}>Add to Cart</motion.button>
+
+                {/* Quantity and Add to Cart Button */}
+                <div className="d-flex align-items-center gap-3 mt-4">
+                  {/* Quantity Input */}
+                  <input
+                    type="number"
+                    min="1"
+                    defaultValue="1"
+                    className="quantity__input"
+                  />
+
+                  {/* Add to Cart Button */}
+                  <motion.button
+                    whileTap={{ scale: 1.1 }}
+                    className="buy__btn"
+                    onClick={addToCart}
+                  >
+                    Add to Cart
+                  </motion.button>
+                </div>
               </div>
             </Col>
             <Col lg="12" className='mt-5'>

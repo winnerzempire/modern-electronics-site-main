@@ -1,57 +1,61 @@
-/* General Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f6f9;
+/* Base Styles */
+.product__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
   
-  h2, h6 {
-    color: #333;
-  }
-  
-  .product__details {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 30px;
-  }
-  
-  /* Product Image */
-  .product__details img {
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Rating */
-  .product__rating {
-    margin-bottom: 20px;
-  }
-  
-  .product__rating p {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* Price and Category */
-  .product__price {
-    font-size: 1.4rem;
+  .product__details h2 {
+    font-size: 2rem;
     font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .product__price {
+    font-size: 1.5rem;
+    font-weight: bold;
     color: #007bff;
   }
   
-  .product__category {
-    font-size: 1rem;
-    color: #666;
+  .product__rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
   
-  /* Buttons */
+  .product__rating p {
+    margin: 0;
+  }
+  
+  .product__price,
+  .product__category {
+    margin-top: 10px;
+  }
+  
+  .product__price {
+    color: #007bff;
+  }
+  
+  /* Quantity Input and Add to Cart Button */
+  .quantity__input {
+    width: 70px;
+    padding: 5px;
+    font-size: 1rem;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
   .buy__btn {
     background-color: #007bff;
     color: #fff;
-    padding: 12px 25px;
-    border-radius: 8px;
     font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
@@ -59,91 +63,140 @@ body {
     background-color: #0056b3;
   }
   
-  .related__title {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  
-  /* Tab Styling */
+  /* Tabs for Description and Reviews */
   .tab__wrapper {
     display: flex;
-    gap: 30px;
-    padding: 10px 0;
-    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
   }
   
   .tab__wrapper h6 {
+    font-size: 1.1rem;
     cursor: pointer;
-    font-size: 1rem;
     font-weight: 500;
     color: #333;
-    padding-bottom: 10px;
-    transition: color 0.3s ease;
   }
   
   .tab__wrapper .active__tab {
     color: #007bff;
-    border-bottom: 2px solid #007bff;
+    font-weight: 600;
   }
   
   .tab__content {
     margin-top: 20px;
     font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
+    line-height: 1.5;
   }
   
-  /* Review Form */
-  .review__form {
+  .product__review {
     margin-top: 30px;
+  }
+  
+  .review__wrapper {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .review__wrapper ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .review__wrapper li {
+    margin-bottom: 20px;
   }
   
   .review__form h4 {
     font-size: 1.2rem;
-    color: #333;
+    margin-bottom: 20px;
   }
   
   .form__group {
     margin-bottom: 15px;
   }
   
-  textarea {
+  .form__group input,
+  .form__group textarea {
     width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     padding: 10px;
-    resize: none;
     font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
   
-  textarea:focus {
-    border-color: #007bff;
+  .form__group textarea {
+    resize: vertical;
   }
   
-  input, textarea {
-    outline: none;
+  .rating__group {
+    font-size: 1.2rem;
+  }
+  
+  .rating__group span {
+    cursor: pointer;
+    color: #f39c12;
+  }
+  
+  .review__form button {
+    margin-top: 10px;
+  }
+  
+  .related__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
   }
   
   /* Responsive Styles */
-  @media (max-width: 992px) {
-    .product__details {
-      padding: 15px;
+  @media (max-width: 768px) {
+    .product__details h2 {
+      font-size: 1.8rem;
+    }
+  
+    .product__price {
+      font-size: 1.3rem;
+    }
+  
+    .quantity__input {
+      width: 60px;
     }
   
     .buy__btn {
-      width: 100%;
+      font-size: 1rem;
+      padding: 8px 18px;
+    }
+  
+    .tab__wrapper h6 {
+      font-size: 1rem;
+    }
+  
+    .product__review .review__wrapper {
+      padding: 15px;
     }
   }
   
   @media (max-width: 576px) {
-    .product__details {
-      padding: 12px;
+    .product__details h2 {
+      font-size: 1.6rem;
     }
   
-    .product__name {
-      font-size: 1.3rem;
+    .product__price {
+      font-size: 1.2rem;
+    }
+  
+    .quantity__input {
+      width: 50px;
+    }
+  
+    .buy__btn {
+      font-size: 1rem;
+      padding: 8px 16px;
+    }
+  
+    .tab__wrapper h6 {
+      font-size: 0.9rem;
     }
   }
   
