@@ -1,138 +1,114 @@
-/* Base Styles */
-.product__card-column {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .product__image-card {
+/* Base Styles for Product Card */
+.product__card {
     background-color: #fff;
     border: 1px solid #eaeaea;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
   }
   
-  .product__image-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  .product__card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
-  .product__image {
+  .product__image-wrapper {
     position: relative;
     overflow: hidden;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-bottom: 1px solid #eaeaea;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   
-  .product__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .product__image img:hover {
-    transform: scale(1.05);
-  }
-  
-  .product__details {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .product__name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
+  .product__image-link {
     display: block;
   }
   
-  .product__details i {
-    font-size: 1.5rem;
+  .product__img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .product__image-wrapper:hover .product__img {
+    transform: scale(1.1);
+  }
+  
+  .product__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+  
+  /* Product Info Section */
+  .product__info {
+    padding: 15px;
+  }
+  
+  .product__name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Price and Add to Cart Section */
+  .product__info .d-flex {
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .btn-outline-primary {
     color: #007bff;
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.2s ease;
+    border-color: #007bff;
+    background-color: transparent;
+    transition: all 0.3s ease;
   }
   
-  .product__details i:hover {
-    color: #0056b3;
-    transform: scale(1.2);
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
   }
   
-  /* Buttons */
-  .product__details .btn {
-    font-size: 0.9rem;
-    padding: 8px 15px;
-    transition: background-color 0.3s ease;
+  /* View Button */
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: all 0.3s ease;
   }
   
-  .product__details .btn-primary:hover {
+  .btn-primary:hover {
     background-color: #0056b3;
   }
   
-  .product__details .btn-danger:hover {
-    background-color: #b30000;
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    transition: all 0.3s ease;
   }
   
-  /* Media Queries */
-  @media (max-width: 992px) {
-    .product__image {
-      height: 180px;
-    }
-  
-    .product__name {
-      font-size: 1rem;
-    }
-  
-    .product__details i {
-      font-size: 1.3rem;
-    }
+  .btn-danger:hover {
+    background-color: #a71d2a;
   }
   
-  @media (max-width: 768px) {
-    .product__image {
-      height: 150px;
-    }
-  
-    .product__details {
-      padding: 10px;
-    }
-  
-    .product__name {
-      font-size: 0.95rem;
-    }
-  
-    .product__details i {
-      font-size: 1.2rem;
-    }
-  }
-  
+  /* Responsive Adjustments */
   @media (max-width: 576px) {
-    .product__card-column {
+    .product__info {
       padding: 10px;
     }
   
-    .product__image {
-      height: 120px;
-    }
-  
     .product__name {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
   
-    .product__details i {
-      font-size: 1rem;
-    }
-  
-    .product__details .btn {
+    .btn {
       font-size: 0.8rem;
-      padding: 6px 12px;
+      padding: 5px 10px;
     }
   }
   
