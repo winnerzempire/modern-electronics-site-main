@@ -7,7 +7,7 @@ export default function Television() {
   
   useEffect(() => {
     // Fetch products from your API or data source
-    fetch('/api/products')
+    fetch('https://viqtech.co.ke/api/products/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error)); // Handle errors
