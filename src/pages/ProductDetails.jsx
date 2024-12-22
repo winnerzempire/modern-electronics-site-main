@@ -69,7 +69,7 @@ const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const { imgUrl, productName, price, total_rating, reviews, description, shortDesc, category } = product;
+  const { imgUrl, productName, price, total_rating, reviews, description, shortDisc, category } = product;
 
   const addToCart = () => {
     dispatch(addItem({
@@ -127,7 +127,7 @@ const ProductDetails = () => {
         <PriceFormat price={price} />
       </span>
     </div>
-    <p className="mt-3">{shortDesc}</p>
+    <p className="mt-3">{shortDisc}</p>
     <div className="mt-2">
       <span>Category: {category?.title.toUpperCase()}</span>
     </div>
