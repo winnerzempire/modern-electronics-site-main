@@ -64,7 +64,7 @@ const ProductsList = ({ searchTerm }) => {
           <option value="">All Categories</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.name}
+              {category.title}
             </option>
           ))}
         </select>
