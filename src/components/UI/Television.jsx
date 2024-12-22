@@ -4,8 +4,8 @@ import ProductList from "./ProductsList";
 
 export default function Television() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('https://viqtech.co.ke/api/products/products/')
@@ -26,7 +26,12 @@ export default function Television() {
       });
   }, []);
 
-  const televisionProducts = products.filter(product => product.category.toLowerCase() === 'television');
+  const televisionProducts = products.filter(
+    (product) =>
+      product.category && // Ensure category exists
+      typeof product.category === "string" && // Ensure category is a string
+      product.category.toLowerCase() === "television"
+  );
 
   return (
     <Container>
