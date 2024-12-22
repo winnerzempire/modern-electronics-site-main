@@ -40,17 +40,19 @@ const Home = () => {
   useEffect(() => {
     if (products.length > 0) {
       const data = {
-        trending: products.filter(product => product.category && product.category.toLowerCase() === "trending"),
-        televisions: products.filter(product => product.category && product.category.toLowerCase() === "televisions"),
-        cookers: products.filter(product => product.category && product.category.toLowerCase() === "cookers"),
-        soundBars: products.filter(product => product.category && product.category.toLowerCase() === "sound bars and audios"),
-        fridges: products.filter(product => product.category && product.category.toLowerCase() === "fridges"),
-        gaming: products.filter(product => product.category && product.category.toLowerCase() === "gaming"),
+        trending: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "trending"),
+        televisions: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "televisions"),
+        cookers: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "cookers"),
+        soundBars: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "sound bars and audios"),
+        fridges: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "fridges"),
+        gaming: products.filter(product => typeof product.category === 'string' && product.category.toLowerCase() === "gaming"),
       };
       setCategoriesData(data);
       setProductOnOffer(products[0]); // Assuming the first product is on offer
     }
   }, [products]);
+  
+ 
 
   if (status === "loading") return <Spinner />;
   if (status === "error") return <h3 className="text-center">{error}</h3>;
