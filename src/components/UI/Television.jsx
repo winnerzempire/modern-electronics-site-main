@@ -27,12 +27,13 @@ export default function Television() {
       });
   }, []);
 
-  const televisionProducts = products.filter(
-    (product) =>
-      product.category && // Ensure category exists
-      product.category.title && // Ensure title exists
-      product.category.title.toLowerCase() === "televisions"
-  );
+  const televisionProducts = products.filter((product) => {
+    if (product.category && product.category.title) {
+      console.log("Category:", product.category.title); // Log category title for debugging
+      return product.category.title.toLowerCase() === "televisions";
+    }
+    return false;
+  });
 
   return (
     <Container>
