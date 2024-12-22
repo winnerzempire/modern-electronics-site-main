@@ -109,33 +109,48 @@ const ProductDetails = () => {
   return (
     <Helmet title={productName}>
       <CommonSection title={'Product Detail'} />
-      <section className='pt-0'>
-        <Container>
-          <Row>
-            <Col lg="6" className="mt-5">
-              <img src={imgUrl} alt={productName} />
-            </Col>
-            <Col lg="6">
-              <div className="d-flex flex-column p-3 product__details">
-                <h2>{productName}</h2>
-                <div className="d-flex align-items-center gap-5">
-                  <span className="product__price"><PriceFormat price={price} /></span>
-                </div>
-                <p className="mt-3">{shortDesc}</p>
-                <div>
-                  <span>Category: {category?.title.toUpperCase()}</span>
-                </div>
-                <div className="d-flex align-items-center gap-3 mt-4">
-                  <input type="number" min="1" defaultValue="1" className="quantity__input" />
-                  <motion.button whileTap={{ scale: 1.1 }} className="buy__btn" onClick={addToCart}>
-                    Add to Cart
-                  </motion.button>
-                </div>
+      <section className="pt-0">
+      <Container>
+        <Row>
+          <Col lg="12" className="text-center">
+            <h2 className="product__title">{productName}</h2>
+          </Col>
+        </Row>
+        <Row className="align-items-center mt-4">
+          <Col lg="6">
+            <img src={imgUrl} alt={productName} className="img-fluid" />
+          </Col>
+          <Col lg="6">
+            <div className="d-flex flex-column p-3 product__details">
+              <div className="d-flex align-items-center gap-5">
+                <span className="product__price">
+                  <PriceFormat price={price} />
+                </span>
               </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+              <p className="mt-3">{shortDesc}</p>
+              <div className="mt-2">
+                <span>Category: {category?.title.toUpperCase()}</span>
+              </div>
+              <div className="d-flex align-items-center gap-3 mt-4">
+                <input
+                  type="number"
+                  min="1"
+                  defaultValue="1"
+                  className="quantity__input"
+                />
+                <motion.button
+                  whileTap={{ scale: 1.1 }}
+                  className="buy__btn"
+                  onClick={addToCart}
+                >
+                  Add to Cart
+                </motion.button>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
 
       <section>
         <Container>
