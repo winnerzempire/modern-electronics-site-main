@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import axios from 'axios';
 import './product.css'; // Import the CSS file
 
-const ProductsList = ({ searchTerm, selectedCategory }) => {
+const ProductsList = ({ searchTerm }) => {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
