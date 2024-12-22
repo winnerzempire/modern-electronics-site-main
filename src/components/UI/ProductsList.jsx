@@ -16,7 +16,7 @@ const ProductsList = ({ searchTerm }) => {
     const fetchData = async () => {
       try {
         // Fetch categories
-        const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/');
+        const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/categories/');
         setCategories(categoryResponse.data);
 
         // Fetch products
@@ -37,7 +37,9 @@ const ProductsList = ({ searchTerm }) => {
     let filtered = data;
 
     if (selectedCategory) {
-      filtered = filtered.filter((item) => item.category.id === selectedCategory);
+      filtered = filtered.filter(
+        (item) => item.category.id.toString() === selectedCategory // Ensure type consistency
+      );
     }
 
     if (searchTerm) {
@@ -64,7 +66,7 @@ const ProductsList = ({ searchTerm }) => {
           <option value="">All Categories</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.title}
+              {category.title} {/* Ensure that the category has 'id' and 'title' */}
             </option>
           ))}
         </select>
