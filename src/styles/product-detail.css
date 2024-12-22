@@ -29,6 +29,20 @@
     text-transform: uppercase;
     font-weight: bold;
   }
+  .product__details {
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .product__details {
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
   
   /* Quantity input */
   .quantity__input {

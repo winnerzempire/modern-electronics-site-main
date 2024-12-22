@@ -121,33 +121,34 @@ const ProductDetails = () => {
             <img src={imgUrl} alt={productName} className="img-fluid" />
           </Col>
           <Col lg="6">
-            <div className="d-flex flex-column p-3 product__details">
-              <div className="d-flex align-items-center gap-5">
-                <span className="product__price">
-                  <PriceFormat price={price} />
-                </span>
-              </div>
-              <p className="mt-3">{shortDesc}</p>
-              <div className="mt-2">
-                <span>Category: {category?.title.toUpperCase()}</span>
-              </div>
-              <div className="d-flex align-items-center gap-3 mt-4">
-                <input
-                  type="number"
-                  min="1"
-                  defaultValue="1"
-                  className="quantity__input"
-                />
-                <motion.button
-                  whileTap={{ scale: 1.1 }}
-                  className="buy__btn"
-                  onClick={addToCart}
-                >
-                  Add to Cart
-                </motion.button>
-              </div>
-            </div>
-          </Col>
+  <div className="d-flex flex-column">
+    <div className="d-flex align-items-center gap-5">
+      <span className="product__price">
+        <PriceFormat price={price} />
+      </span>
+    </div>
+    <p className="mt-3">{shortDesc}</p>
+    <div className="mt-2">
+      <span>Category: {category?.title.toUpperCase()}</span>
+    </div>
+    <div className="d-flex align-items-center gap-3 mt-4">
+      <input
+        type="number"
+        min="1"
+        defaultValue="1"
+        className="quantity__input"
+      />
+      <motion.button
+        whileTap={{ scale: 1.1 }}
+        className="buy__btn"
+        onClick={addToCart}
+      >
+        Add to Cart
+      </motion.button>
+    </div>
+  </div>
+</Col>
+
         </Row>
       </Container>
     </section>
