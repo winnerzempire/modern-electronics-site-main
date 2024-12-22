@@ -16,7 +16,7 @@ const ProductsList = ({ searchTerm }) => {
     const fetchData = async () => {
       try {
         // Fetch categories
-        const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/categories/');
+        const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/');
         setCategories(categoryResponse.data);
 
         // Fetch products
