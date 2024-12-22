@@ -8,54 +8,47 @@ export default function Television() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://viqtech.co.ke/api/products/products/')
-      .then(response => {
+    fetch("https://viqtech.co.ke/api/products/products/")
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setProducts(data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-        setError('Failed to fetch products. Please try again later.');
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products.");
         setLoading(false);
       });
   }, []);
 
-  const televisionProducts = products.filter(
-    (product) =>
-      product.category && // Ensure category exists
-      typeof product.category === "string" && // Ensure category is a string
-      product.category.toLowerCase() === "television"
-  );
+  const televisionProducts = Array.isArray(products)
+    ? products.filter(
+        (product) =>
+          product.category && // Ensure category exists
+          typeof product.category.title === "string" && // Ensure title is a string
+          product.category.title.toLowerCase() === "television" // Check for "television"
+      )
+    : [];
 
   return (
     <Container>
-      <Row className="d-flex justify-content-between gap-5">
+      <Row>
         <Col lg="12" className="text-center">
-          <h2 className="section__title" id="television">
-            Television
-          </h2>
+          <h2>Television</h2>
         </Col>
 
-        {loading ? (
-          <Col lg="12" className="text-center">
-            <p>Loading products...</p>
-          </Col>
-        ) : error ? (
-          <Col lg="12" className="text-center">
-            <p>{error}</p>
-          </Col>
-        ) : televisionProducts.length > 0 ? (
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+
+        {!loading && !error && televisionProducts.length > 0 ? (
           <ProductList data={televisionProducts} />
         ) : (
-          <Col lg="12" className="text-center">
-            <p>No television products available at the moment.</p>
-          </Col>
+          <p>No television products available.</p>
         )}
       </Row>
     </Container>
