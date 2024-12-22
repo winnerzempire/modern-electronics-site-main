@@ -4,18 +4,30 @@ import ProductList from "./ProductsList";
 
 export default function Television() {
   const [products, setProducts] = useState([]);
-  
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
   useEffect(() => {
-    // Fetch products from your API or data source
     fetch('https://viqtech.co.ke/api/products/products/')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error)); // Handle errors
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+        setError('Failed to fetch products. Please try again later.');
+        setLoading(false);
+      });
   }, []);
-  
-  // Filter only the products that belong to the 'television' category
-  const televisionProducts = products.filter(product => product.category === 'television');
-  
+
+  const televisionProducts = products.filter(product => product.category.toLowerCase() === 'television');
+
   return (
     <Container>
       <Row className="d-flex justify-content-between gap-5">
@@ -24,9 +36,16 @@ export default function Television() {
             Television
           </h2>
         </Col>
-        
-        {/* Display products only if there are any in the television category */}
-        {televisionProducts.length > 0 ? (
+
+        {loading ? (
+          <Col lg="12" className="text-center">
+            <p>Loading products...</p>
+          </Col>
+        ) : error ? (
+          <Col lg="12" className="text-center">
+            <p>{error}</p>
+          </Col>
+        ) : televisionProducts.length > 0 ? (
           <ProductList data={televisionProducts} />
         ) : (
           <Col lg="12" className="text-center">
