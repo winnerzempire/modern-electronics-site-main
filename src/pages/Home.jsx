@@ -40,12 +40,12 @@ const Home = () => {
   useEffect(() => {
     if (products.length > 0) {
       const data = {
-        trending: products.filter(product => product.category === "Trending"),
-        televisions: products.filter(product => product.category === "Televisions"),
-        cookers: products.filter(product => product.category === "Cookers"),
-        soundBars: products.filter(product => product.category === "Sound bars and Audios"),
-        fridges: products.filter(product => product.category === "Fridges"),
-        gaming: products.filter(product => product.category === "Gaming"),
+        trending: products.filter(product => product.category && product.category.toLowerCase() === "trending"),
+        televisions: products.filter(product => product.category && product.category.toLowerCase() === "televisions"),
+        cookers: products.filter(product => product.category && product.category.toLowerCase() === "cookers"),
+        soundBars: products.filter(product => product.category && product.category.toLowerCase() === "sound bars and audios"),
+        fridges: products.filter(product => product.category && product.category.toLowerCase() === "fridges"),
+        gaming: products.filter(product => product.category && product.category.toLowerCase() === "gaming"),
       };
       setCategoriesData(data);
       setProductOnOffer(products[0]); // Assuming the first product is on offer
@@ -84,6 +84,7 @@ const Home = () => {
               <Col lg="12" className="text-center">
                 <h2 className="section__title">{title}</h2>
               </Col>
+              {/* Show the component or a "No products available" message */}
               {data.length > 0 ? component : <p>No products available</p>}
             </Row>
           </Container>
