@@ -36,13 +36,6 @@ const Home = () => {
     }
   }, [status, dispatch]);
 
-  if (status === "loading") {
-    return <Spinner />;
-  } else if (status === "error") {
-    return <h3 className="text-center">{error}</h3>;
-  }
-
-  const year = new Date().getFullYear();
   const [productOnOffer, setProductOnOffer] = useState(null);
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [televisionProducts, setTelevisionProducts] = useState([]);
@@ -52,10 +45,39 @@ const Home = () => {
   const [gamingProducts, setGamingProducts] = useState([]);
   const [soundItem, setSoundItem] = useState([]);
 
-  
-     
+  useEffect(() => {
+    if (products.length > 0) {
+      // Filter the products based on category
+      const filteredTrendingProducts = products.filter(product => product.category === "Trending");
+      setTrendingProducts(filteredTrendingProducts);
+
+      const filteredTelevisionProducts = products.filter(product => product.category === "Television");
+      setTelevisionProducts(filteredTelevisionProducts);
+
+      const filteredCookerProducts = products.filter(product => product.category === "Cooker");
+      setCookerProducts(filteredCookerProducts);
+
+      const filteredSoundProducts = products.filter(product => product.category === "SoundBarAndAudio");
+      setSoundProducts(filteredSoundProducts);
+
+      const filteredFridgeProducts = products.filter(product => product.category === "Fridge");
+      setFridgeProducts(filteredFridgeProducts);
+
+      const filteredGamingProducts = products.filter(product => product.category === "Gaming");
+      setGamingProducts(filteredGamingProducts);
 
       // Assuming you want the first product on offer:
+      setProductOnOffer(products[0]);
+    }
+  }, [products]);
+
+  if (status === "loading") {
+    return <Spinner />;
+  } else if (status === "error") {
+    return <h3 className="text-center">{error}</h3>;
+  }
+
+  const year = new Date().getFullYear();
 
   return (
     <>
@@ -67,6 +89,8 @@ const Home = () => {
             </Container>
           </section>
           <Services />
+
+          {/* Trending Products Section */}
           <section className="trending__products">
             <Container>
               <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
@@ -78,6 +102,7 @@ const Home = () => {
             </Container>
           </section>
 
+          {/* Sound Bar and Audio Section */}
           <section className="trending__products">
             <Container>
               <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
@@ -88,16 +113,22 @@ const Home = () => {
               </Row>
             </Container>
           </section>
+
+          {/* Television Products Section */}
           {televisionProducts.length > 0 && (
             <section className="best__sales">
               <Television television={televisionProducts} />
             </section>
           )}
+
+          {/* Limited Offers Section */}
           {productOnOffer && (
             <section className="timer__count">
               <LimitedOffers productOnOffer={productOnOffer} />
             </section>
           )}
+
+          {/* New Arrivals Section */}
           <section className="new__arrivals">
             <Container>
               <Row className="d-flex flex-sm-column flex-md-row align-items-center justify-content-between gap-5">
@@ -106,11 +137,15 @@ const Home = () => {
               </Row>
             </Container>
           </section>
+
+          {/* Fridge Products Section */}
           {fridgeProducts.length > 0 && (
             <section className="popular__category">
               <Fridge fridgeProducts={fridgeProducts} />
             </section>
           )}
+
+          {/* Gaming Products Section */}
           {gamingProducts.length > 0 && (
             <section className="popular__category">
               <Gaming gamingProducts={gamingProducts} />
