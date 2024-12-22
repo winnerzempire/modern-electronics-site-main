@@ -5,14 +5,23 @@ import './product.css'; // Import the CSS file
 
 const ProductsList = ({ searchTerm }) => {
   const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
+  // Fetch products and categories on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://viqtech.co.ke/api/products/products/');
-        setData(response.data);
+        // Fetch categories
+        const categoryResponse = await axios.get('https://viqtech.co.ke/api/categories/');
+        setCategories(categoryResponse.data);
+
+        // Fetch products
+        const productResponse = await axios.get('https://viqtech.co.ke/api/products/products/');
+        setData(productResponse.data);
       } catch (err) {
         setError(err);
       } finally {
@@ -23,23 +32,54 @@ const ProductsList = ({ searchTerm }) => {
     fetchData();
   }, []);
 
-  const searchTermLower = searchTerm ? searchTerm.toLowerCase() : '';
-  const filteredData = data.filter((item) =>
-    item.productName && item.productName.toLowerCase().includes(searchTermLower)
-  );
+  // Filter products based on selected category and search term
+  useEffect(() => {
+    let filtered = data;
+
+    if (selectedCategory) {
+      filtered = filtered.filter((item) => item.category.id === selectedCategory);
+    }
+
+    if (searchTerm) {
+      const searchTermLower = searchTerm.toLowerCase();
+      filtered = filtered.filter((item) =>
+        item.productName && item.productName.toLowerCase().includes(searchTermLower)
+      );
+    }
+
+    setFilteredData(filtered);
+  }, [data, selectedCategory, searchTerm]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="products-list">
-      {filteredData.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        filteredData.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))
-      )}
+    <div>
+      {/* Category Filter */}
+      <div className="category-filter">
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Product List */}
+      <div className="products-list">
+        {filteredData.length === 0 ? (
+          <p>No products found</p>
+        ) : (
+          filteredData.map((item) => (
+            <ProductCard key={item.id} item={item} />
+          ))
+        )}
+      </div>
     </div>
   );
 };
