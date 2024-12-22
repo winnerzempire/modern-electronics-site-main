@@ -51,7 +51,7 @@ const Home = () => {
       const filteredTrendingProducts = products.filter(product => product.category === "Trending");
       setTrendingProducts(filteredTrendingProducts);
 
-      const filteredTelevisionProducts = products.filter(product => product.category === "Televisions");
+      const filteredTelevisionProducts = products.filter(product => product.category === "Television");
       setTelevisionProducts(filteredTelevisionProducts);
 
       const filteredCookerProducts = products.filter(product => product.category === "Cookers");
