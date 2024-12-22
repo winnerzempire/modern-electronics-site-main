@@ -51,7 +51,7 @@ const Home = () => {
       const filteredTrendingProducts = products.filter(product => product.category === "Trending");
       setTrendingProducts(filteredTrendingProducts);
 
-      const filteredTelevisionProducts = products.filter(product => product.category === "Television");
+      const filteredTelevisionProducts = products.filter(product => product.category === "Televisions");
       setTelevisionProducts(filteredTelevisionProducts);
 
       const filteredCookerProducts = products.filter(product => product.category === "Cooker");
@@ -98,18 +98,6 @@ const Home = () => {
                   <h2 className="section__title">Trending Products</h2>
                 </Col>
                 <ProductsList data={trendingProducts} />
-              </Row>
-            </Container>
-          </section>
-
-          {/* Sound Bar and Audio Section */}
-          <section className="trending__products">
-            <Container>
-              <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
-                <Col lg="12" className="text-center">
-                  <h2 className="section__title">Sound Bar and Audio</h2>
-                </Col>
-                <ProductsList data={soundItem} />
               </Row>
             </Container>
           </section>
