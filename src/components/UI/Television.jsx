@@ -16,24 +16,23 @@ export default function Television() {
         return response.json();
       })
       .then((data) => {
+        console.log("Fetched products:", data); // Debugging: Log fetched products
         setProducts(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching products:", err);
+        console.error("Error fetching products:", err); // Debugging: Log error
         setError("Failed to load products.");
         setLoading(false);
       });
   }, []);
 
-  const televisionProducts = Array.isArray(products)
-    ? products.filter(
-        (product) =>
-          product.category && // Ensure category exists
-          typeof product.category.title === "string" && // Ensure title is a string
-          product.category.title.toLowerCase() === "television" // Check for "television"
-      )
-    : [];
+  const televisionProducts = products.filter(
+    (product) =>
+      product.category && // Ensure category exists
+      product.category.title && // Ensure title exists
+      product.category.title.toLowerCase() === "televisions"
+  );
 
   return (
     <Container>
