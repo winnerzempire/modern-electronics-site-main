@@ -1,8 +1,17 @@
+import { useState, useEffect } from "react";
 import { Container, Col, Row } from "reactstrap";
 import ProductList from "./ProductsList";
 
-export default function Television({ products }) {
-  // Filter products by category 'television'
+export default function Television() {
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    // Fetch products from your API or data source
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(data => setProducts(data));
+  }, []);
+  
   const televisionProducts = products.filter(product => product.category === 'television');
   
   return (
