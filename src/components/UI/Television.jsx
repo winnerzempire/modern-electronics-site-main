@@ -9,9 +9,11 @@ export default function Television() {
     // Fetch products from your API or data source
     fetch('/api/products')
       .then(response => response.json())
-      .then(data => setProducts(data));
+      .then(data => setProducts(data))
+      .catch(error => console.error('Error fetching products:', error)); // Handle errors
   }, []);
   
+  // Filter only the products that belong to the 'television' category
   const televisionProducts = products.filter(product => product.category === 'television');
   
   return (
@@ -22,7 +24,15 @@ export default function Television() {
             Television
           </h2>
         </Col>
-        <ProductList data={televisionProducts} />
+        
+        {/* Display products only if there are any in the television category */}
+        {televisionProducts.length > 0 ? (
+          <ProductList data={televisionProducts} />
+        ) : (
+          <Col lg="12" className="text-center">
+            <p>No television products available at the moment.</p>
+          </Col>
+        )}
       </Row>
     </Container>
   );
