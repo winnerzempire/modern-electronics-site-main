@@ -101,6 +101,7 @@ const Home = () => {
               </Row>
             </Container>
           </section>
+          <SoundBarAndAudio />
 
           {/* Television Products Section */}
           {televisionProducts.length > 0 && (
