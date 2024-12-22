@@ -12,7 +12,6 @@ import Spinner from "../components/Spinner";
 import Trending from "../components/Trending";
 import Television from "../components/UI/Television";
 import Gaming from "../components/UI/Gaming";
-import SoundBarAndAudio from "../components/UI/SoundBarAndAudio";
 import {
   fetchProducts,
   getError,
@@ -51,6 +50,7 @@ const Home = () => {
   const [soundProducts, setSoundProducts] = useState([]);
   const [fridgeProducts, setFridgeProducts] = useState([]);
   const [gamingProducts, setGamingProducts] = useState([]);
+  const [soundItem, setSoundItem] = useState([]);
 
   
      
