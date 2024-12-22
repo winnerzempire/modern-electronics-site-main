@@ -1,14 +1,15 @@
-import ProductsList from "./ProductsList";
-import { Col } from "reactstrap";
-export default function SoundBarAndAudio({ soundItem }) {
+import React from 'react';
+import ProductsList from './ProductsList';
+
+const SoundBarAndAudio = () => {
+  const soundBarFilter = (item) => item.category?.title === 'SoundBarAndAudio';
+
   return (
-    <>
-      <Col lg="12" className="text-center mb-5">
-        <h2 className="section__title" id="sound">
-          
-        </h2>
-      </Col>
-      <ProductsList data={soundItem} />
-    </>
+    <div>
+      <h2 className="section__title">Sound Bar and Audio</h2>
+      <ProductsList filterCriteria={soundBarFilter} />
+    </div>
   );
-}
+};
+
+export default SoundBarAndAudio;

@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import axios from 'axios';
 import './product.css'; // Import the CSS file
 
-const ProductsList = ({ searchTerm }) => {
+const ProductsList = ({ searchTerm, filterCriteria }) => {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const ProductsList = ({ searchTerm }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
-  // Fetch products and categories on component mount
+  // Fetch products and categories from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,25 +32,29 @@ const ProductsList = ({ searchTerm }) => {
     fetchData();
   }, []);
 
-  // Filter products based on selected category and search term
+  // Filter products based on selected category, search term, and filterCriteria
   useEffect(() => {
     let filtered = data;
 
     if (selectedCategory) {
       filtered = filtered.filter(
-        (item) => item.category.id.toString() === selectedCategory // Ensure type consistency
+        (item) => item.category?.id.toString() === selectedCategory // Ensure type consistency
       );
+    }
+
+    if (filterCriteria) {
+      filtered = filtered.filter(filterCriteria);
     }
 
     if (searchTerm) {
       const searchTermLower = searchTerm.toLowerCase();
       filtered = filtered.filter((item) =>
-        item.productName && item.productName.toLowerCase().includes(searchTermLower)
+        item.productName?.toLowerCase().includes(searchTermLower)
       );
     }
 
     setFilteredData(filtered);
-  }, [data, selectedCategory, searchTerm]);
+  }, [data, selectedCategory, filterCriteria, searchTerm]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
