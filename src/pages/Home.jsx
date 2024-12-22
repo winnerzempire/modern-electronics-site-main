@@ -54,13 +54,13 @@ const Home = () => {
       const filteredTelevisionProducts = products.filter(product => product.category === "Televisions");
       setTelevisionProducts(filteredTelevisionProducts);
 
-      const filteredCookerProducts = products.filter(product => product.category === "Cooker");
+      const filteredCookerProducts = products.filter(product => product.category === "Cookers");
       setCookerProducts(filteredCookerProducts);
 
-      const filteredSoundProducts = products.filter(product => product.category === "SoundBarAndAudio");
+      const filteredSoundProducts = products.filter(product => product.category === "Sound bars and Audios");
       setSoundProducts(filteredSoundProducts);
 
-      const filteredFridgeProducts = products.filter(product => product.category === "Fridge");
+      const filteredFridgeProducts = products.filter(product => product.category === "Fridges");
       setFridgeProducts(filteredFridgeProducts);
 
       const filteredGamingProducts = products.filter(product => product.category === "Gaming");
