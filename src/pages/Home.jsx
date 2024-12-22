@@ -76,6 +76,17 @@ const Home = () => {
               </Row>
             </Container>
           </section>
+
+          <section className="trending__products">
+            <Container>
+              <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                <Col lg="12" className="text-center">
+                  <h2 className="section__title">Sound Bar and Audio</h2>
+                </Col>
+                <ProductsList data={soundItem} />
+              </Row>
+            </Container>
+          </section>
           {televisionProducts.length > 0 && (
             <section className="best__sales">
               <Television television={televisionProducts} />

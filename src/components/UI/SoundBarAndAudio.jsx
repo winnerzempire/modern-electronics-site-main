@@ -5,7 +5,7 @@ export default function SoundBarAndAudio({ soundItem }) {
     <>
       <Col lg="12" className="text-center mb-5">
         <h2 className="section__title" id="sound">
-          Sound Bar and Audio
+          
         </h2>
       </Col>
       <ProductsList data={soundItem} />
