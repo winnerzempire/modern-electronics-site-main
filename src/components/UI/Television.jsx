@@ -30,7 +30,7 @@ export default function Television() {
   const televisionProducts = products.filter((product) => {
     if (product.category && product.category.title) {
       console.log("Category:", product.category.title); // Log category title for debugging
-      return product.category.title.toLowerCase() === "televisions";
+      return product.category.Televisions.toLowerCase() === "televisions";
     }
     return false;
   });
