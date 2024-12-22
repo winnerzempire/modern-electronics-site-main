@@ -91,7 +91,7 @@ const Home = () => {
           <Services />
 
           {/* Trending Products Section */}
-          <section className="trending__products">
+          {/* <section className="trending__products">
             <Container>
               <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
                 <Col lg="12" className="text-center">
@@ -100,7 +100,7 @@ const Home = () => {
                 <ProductsList data={trendingProducts} />
               </Row>
             </Container>
-          </section>
+          </section> */}
 
           {/* Television Products Section */}
           {televisionProducts.length > 0 && (
