@@ -43,7 +43,6 @@ const Home = () => {
   const [soundProducts, setSoundProducts] = useState([]);
   const [fridgeProducts, setFridgeProducts] = useState([]);
   const [gamingProducts, setGamingProducts] = useState([]);
-  const [soundItem, setSoundItem] = useState([]);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -102,22 +101,17 @@ const Home = () => {
             </Container>
           </section>
 
-          {/* Trending Products Section */}
-          <section className="trending__products">
-            <Container>
-              <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
-                <Col lg="12" className="text-center">
-                  <h2 className="section__title">Televisons</h2>
-                </Col>
-                <Television television={televisionProducts} />
-              </Row>
-            </Container>
-          </section>
-
           {/* Television Products Section */}
           {televisionProducts.length > 0 && (
-            <section className="best__sales">
-              <Television television={televisionProducts} />
+            <section className="trending__products">
+              <Container>
+                <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                  <Col lg="12" className="text-center">
+                    <h2 className="section__title">Televisions</h2>
+                  </Col>
+                  <Television television={televisionProducts} />
+                </Row>
+              </Container>
             </section>
           )}
 

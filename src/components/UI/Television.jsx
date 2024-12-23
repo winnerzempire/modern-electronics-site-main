@@ -27,10 +27,11 @@ export default function Television() {
       });
   }, []);
 
+  // Filter for television products
   const televisionProducts = products.filter((product) => {
     if (product.category && product.category.title) {
-      console.log("Category:", product.category.title); // Log category title for debugging
-      return product.category.Televisions.toLowerCase() === "televisions";
+      console.log("Category:", product.category.title); // Debugging: Log category title
+      return product.category.title.toLowerCase() === "televisions";
     }
     return false;
   });
