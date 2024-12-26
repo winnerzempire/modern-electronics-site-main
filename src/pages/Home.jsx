@@ -97,9 +97,6 @@ const Home = () => {
           <section className="trending__products">
             <Container>
               <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
-                <Col lg="12" className="text-center">
-                  <h2 className="section__title">Trending Products</h2>
-                </Col>
                 <ProductsList data={trendingProducts} />
               </Row>
             </Container>
