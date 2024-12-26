@@ -1,40 +1,36 @@
 import { useState, useEffect } from "react";
 import { Container, Col, Row } from "reactstrap";
-import ProductList from "./ProductsList";
+import ProductsList from "./ProductsList"; // Import ProductsList to display filtered products
 
 export default function Television() {
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("https://viqtech.co.ke/api/products/products/")
-      .then((response) => {
+    // Fetch categories to filter the products later
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("https://viqtech.co.ke/api/products/");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched products:", data); // Debugging: Log fetched products
-        setProducts(data);
+        const data = await response.json();
+        setCategories(data);
         setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err); // Debugging: Log error
-        setError("Failed to load products.");
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setError("Failed to load categories.");
         setLoading(false);
-      });
+      }
+    };
+
+    fetchCategories();
   }, []);
 
-  // Filter for television products
-  const televisionProducts = products.filter((product) => {
-    if (product.category && product.category.title) {
-      console.log("Category:", product.category.title); // Debugging: Log category title
-      return product.category.title.toLowerCase() === "televisions";
-    }
-    return false;
-  });
+  const televisionCategoryId = categories.find(
+    (category) => category.title.toLowerCase() === "televisions"
+  )?.id;
 
   return (
     <Container>
@@ -43,13 +39,14 @@ export default function Television() {
           <h2>Television</h2>
         </Col>
 
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
+        {loading && <p>Loading categories...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-        {!loading && !error && televisionProducts.length > 0 ? (
-          <ProductList data={televisionProducts} />
-        ) : (
-          <p>No television products available.</p>
+        {/* Pass the television category filter to ProductsList */}
+        {!loading && !error && televisionCategoryId && (
+          <ProductsList
+            filterCriteria={(item) => item.category?.id === televisionCategoryId}
+          />
         )}
       </Row>
     </Container>
