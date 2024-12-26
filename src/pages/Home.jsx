@@ -113,7 +113,7 @@ const Home = () => {
                   <Col lg="12" className="text-center">
                     <h2 className="section__title">Televisions</h2>
                   </Col>
-                  <Television television={televisionProducts} />
+                  <Television data={televisionProducts} />
                 </Row>
               </Container>
             </section>
