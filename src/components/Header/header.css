@@ -124,7 +124,7 @@
   box-shadow: 3px 3px 8px -3px;
 }
 .search__row {
-  margin-top: 20px;  /* Adds spacing between the navbar and the search bar */
+  margin-top: 50px;  /* Adds spacing between the navbar and the search bar */
 }
 
 .search__bar {

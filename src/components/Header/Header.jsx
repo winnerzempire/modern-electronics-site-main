@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import "./header.css";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import { Container, Row, Col, Input, InputGroup, InputGroupText } from "reactstrap";
-import viqtech from "../../assets/images/Viq Tech-1.png";
+import { Container, Row, Col, InputGroup, InputGroupText, Input } from "reactstrap";
+import viqtechLogo from "../../assets/images/Viq Tech-1.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -10,37 +9,25 @@ import { totalQuantity } from "../../redux/slices/cartSlice";
 import useAuth from "../../custom-hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
-import { toast } from "react-toastify";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
-import "./index.scss";
+import { toast } from "react-toastify";
+import "./navbar.scss";
 
-const nav__link = [
-  {
-    path: ".",
-    display: "Home",
-  },
-  {
-    path: "shop",
-    display: "Shop",
-  },
-  {
-    path: "service",
-    display: "Services",
-  },
-  {
-    path: "cart",
-    display: "Cart",
-  },
+const navLinks = [
+  { path: "/", display: "Home" },
+  { path: "/shop", display: "Shop" },
+  { path: "/services", display: "Services" },
+  { path: "/cart", display: "Cart" },
 ];
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const profileActionsRef = useRef(null);
   const total = useSelector(totalQuantity);
   const navigate = useNavigate();
-  const profileActionsRef = useRef(null);
   const { currentUser } = useAuth();
-  const [searchQuery, setSearchQuery] = useState("");
 
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
@@ -55,25 +42,12 @@ const Header = () => {
     });
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
   const handleSearchSubmit = () => {
     if (searchQuery.trim()) {
-      // Navigate to the search page or filter the products based on the searchQuery
       navigate(`/search?query=${searchQuery}`);
     }
-  };
-
-  useEffect(() => {
-    stickyHeaderFunc();
-    return () => window.removeEventListener("scroll", stickyHeaderFunc);
-  }, []);
-
-  const menuToggle = () => menuRef.current.classList.toggle("active__menu");
-  const navigateToCart = (nav) => {
-    navigate(nav);
   };
 
   const toggleProfileActions = () =>
@@ -83,14 +57,19 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         toast.success("Logged out");
-        navigate(".");
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
 
-  // Define whatsappInfo here
+  useEffect(() => {
+    stickyHeaderFunc();
+    return () => window.removeEventListener("scroll", stickyHeaderFunc);
+  }, []);
+
+  // WhatsApp information
   const whatsappInfo = {
     phoneNumber: "+254702122421",
     showPopup: true,
@@ -101,25 +80,25 @@ const Header = () => {
   return (
     <header className="header" ref={headerRef}>
       <Container>
-        {/* Logo and Navigation Section */}
         <Row>
           <div className="nav__wrapper">
-            <div className="logo logo__animate">
-              <img className="animate__image" src={viqtech} alt="logo" />
-              <div>
-                <h1 onClick={() => navigateToCart("/")}>ViqTech</h1>
-              </div>
+            {/* Logo Section */}
+            <div className="logo">
+              <Link to="/">
+                <img src={viqtechLogo} alt="ViqTech" className="logo__img" />
+                <h1 className="logo__text">ViqTech</h1>
+              </Link>
             </div>
 
             {/* Navigation Links */}
-            <div className="navigation" ref={menuRef} onClick={menuToggle}>
-              <ul className="menu">
-                {nav__link.map((item, index) => (
+            <div className="navigation" ref={menuRef}>
+              <ul className="nav__links">
+                {navLinks.map((item, index) => (
                   <li key={index} className="nav__item">
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        isActive ? "nav_active" : ""
+                        isActive ? "nav__link--active" : "nav__link"
                       }
                     >
                       {item.display}
@@ -129,48 +108,36 @@ const Header = () => {
               </ul>
             </div>
 
-            {/* Navigation Icons */}
+            {/* Search Bar Section */}
+            <Col lg="4" className="search__bar">
+              <InputGroup>
+                <Input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+                <InputGroupText onClick={handleSearchSubmit}>
+                  <i className="ri-search-line"></i>
+                </InputGroupText>
+              </InputGroup>
+            </Col>
+
+            {/* User Profile & Cart Icons */}
             <div className="nav__icons">
-              <span
-                className="fav__icon"
-                onClick={() => navigateToCart("/contact")}
-              >
-                <i className="ri-mail-send-fill"></i>
-              </span>
-
-              <span
-                className="cart__icon"
-                onClick={() => navigateToCart("/cart")}
-              >
-                <i className="ri-shopping-bag-line"></i>
-                <span className="badge">{total}</span>
-              </span>
-
-              <Link to="https://www.instagram.com/viqtech_ke">
-                <span className="cart__icon">
-                  <i className="ri-instagram-line"></i>
-                </span>
-              </Link>
-
-              {/* WhatsApp Icon */}
-              <FloatingWhatsApp {...whatsappInfo} />
-
               <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
-                  src={currentUser?.photoURL ? currentUser.photoURL : userIcon}
-                  alt="Profile"
+                  src={currentUser?.photoURL || userIcon}
+                  alt="User"
+                  className="profile__img"
                   onClick={toggleProfileActions}
                 />
-                <div
-                  className="profile__actions"
-                  ref={profileActionsRef}
-                  onClick={toggleProfileActions}
-                >
+                <div className="profile__actions" ref={profileActionsRef}>
                   {currentUser ? (
                     <span onClick={logout}>Logout</span>
                   ) : (
-                    <div className="d-flex align-items-center flex-column justify-content-center">
+                    <div className="auth__links">
                       <Link to="/signup">Signup</Link>
                       <Link to="/login">Login</Link>
                     </div>
@@ -178,30 +145,20 @@ const Header = () => {
                 </div>
               </div>
 
-              <div className="mobile__menu">
-                <span onClick={menuToggle}>
-                  <i className="ri-menu-line"></i>
-                </span>
-              </div>
+              <span className="cart__icon" onClick={() => navigate("/cart")}>
+                <i className="ri-shopping-bag-line"></i>
+                <span className="cart__badge">{total}</span>
+              </span>
+
+              {/* WhatsApp Icon */}
+              <FloatingWhatsApp {...whatsappInfo} />
+            </div>
+
+            {/* Mobile Menu */}
+            <div className="mobile__menu" onClick={() => menuRef.current.classList.toggle("active__menu")}>
+              <i className="ri-menu-line"></i>
             </div>
           </div>
-        </Row>
-
-        {/* Search Bar Row */}
-        <Row className="search__row">
-          <Col lg="12" className="text-center">
-            <InputGroup>
-              <Input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <InputGroupText onClick={handleSearchSubmit}>
-                <i className="ri-search-line"></i>
-              </InputGroupText>
-            </InputGroup>
-          </Col>
         </Row>
       </Container>
     </header>
