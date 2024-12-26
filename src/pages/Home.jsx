@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import ProductsList from "../components/UI/ProductsList";
 import Services from "../services/Services";
 import "../styles/home.css";
 import { useDispatch, useSelector } from "react-redux";
-import counterImg from "../assets/images/counter-timer-img.png";
 import Spinner from "../components/Spinner";
 import Trending from "../components/Trending";
 import Television from "../components/UI/Television";
@@ -28,13 +26,6 @@ const Home = () => {
   const error = useSelector(getError);
   const products = useSelector(selectAll);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchProducts());
-    }
-  }, [status, dispatch]);
 
   const [productOnOffer, setProductOnOffer] = useState(null);
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -45,27 +36,40 @@ const Home = () => {
   const [gamingProducts, setGamingProducts] = useState([]);
 
   useEffect(() => {
+    console.log("Dispatching fetchProducts"); // Log to confirm fetchProducts is being dispatched
+    if (status === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [status, dispatch]);
+
+  useEffect(() => {
+    console.log("Fetched Products:", products); // Log to see the data structure
     if (products.length > 0) {
-      // Filter the products based on category
       const filteredTrendingProducts = products.filter(product => product.category === "Trending");
+      console.log("Filtered Trending Products:", filteredTrendingProducts); // Log filtered results
       setTrendingProducts(filteredTrendingProducts);
 
       const filteredTelevisionProducts = products.filter(product => product.category === "Television");
+      console.log("Filtered Television Products:", filteredTelevisionProducts);
       setTelevisionProducts(filteredTelevisionProducts);
 
       const filteredCookerProducts = products.filter(product => product.category === "Cookers");
+      console.log("Filtered Cooker Products:", filteredCookerProducts);
       setCookerProducts(filteredCookerProducts);
 
       const filteredSoundProducts = products.filter(product => product.category === "Sound bars and Audios");
+      console.log("Filtered Sound Products:", filteredSoundProducts);
       setSoundProducts(filteredSoundProducts);
 
       const filteredFridgeProducts = products.filter(product => product.category === "Fridges");
+      console.log("Filtered Fridge Products:", filteredFridgeProducts);
       setFridgeProducts(filteredFridgeProducts);
 
       const filteredGamingProducts = products.filter(product => product.category === "Gaming");
+      console.log("Filtered Gaming Products:", filteredGamingProducts);
       setGamingProducts(filteredGamingProducts);
 
-      // Assuming you want the first product on offer:
+      // Assuming you want the first product on offer
       setProductOnOffer(products[0]);
     }
   }, [products]);
