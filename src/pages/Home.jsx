@@ -106,7 +106,7 @@ const Home = () => {
           </section>
 
           {/* Television Products Section */}
-          {televisionProducts.length > 0 && (
+          
             <section className="trending__products">
               <Container>
                 <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
@@ -117,7 +117,7 @@ const Home = () => {
                 </Row>
               </Container>
             </section>
-          )}
+          
 
           {/* Limited Offers Section */}
           {productOnOffer && (
