@@ -36,7 +36,7 @@ const SoundBarAndAudio = () => {
   // Ensure case-insensitive category title match and trim spaces
   const soundBarAndAudioCategoryId = categories.find(
     (category) =>
-      category.title.toLowerCase().trim() === 'soundbarandaudio'
+      category.title.toLowerCase().trim() === 'Sound bars and Audios'
   )?.id;
 
   console.log("SoundBarAndAudio Category ID:", soundBarAndAudioCategoryId); // Log category ID
