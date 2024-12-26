@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./header.css";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import { Container, Row, Col, InputGroup, InputGroupText, Input } from "reactstrap";
+import { Container, Row, Col, Input, InputGroup, InputGroupText } from "reactstrap";
 import viqtech from "../../assets/images/Viq Tech-1.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
@@ -12,6 +12,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { toast } from "react-toastify";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
+import "./index.scss";
 
 const nav__link = [
   {
@@ -89,6 +90,14 @@ const Header = () => {
       });
   };
 
+  // Define whatsappInfo here
+  const whatsappInfo = {
+    phoneNumber: "+254702122421",
+    showPopup: true,
+    accountName: "disonobudho233",
+    placeholder: "Type a message...",
+  };
+
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -143,6 +152,7 @@ const Header = () => {
                 </span>
               </Link>
 
+              {/* WhatsApp Icon */}
               <FloatingWhatsApp {...whatsappInfo} />
 
               <div className="profile">
