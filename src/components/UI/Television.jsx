@@ -17,6 +17,7 @@ export default function Television() {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Categories fetched:", data); // Debugging
         setCategories(data);
       } catch (err) {
         console.error("Error fetching categories:", err);
@@ -31,6 +32,7 @@ export default function Television() {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Products fetched:", data); // Debugging
         setProducts(data);
         setLoading(false);
       } catch (err) {
@@ -49,8 +51,14 @@ export default function Television() {
     (category) => category.title.toLowerCase() === "televisions"
   )?.id;
 
+  console.log("Television Category ID:", televisionCategoryId); // Debugging
+
   // Ensure products and categories are both loaded before filtering
-  const filteredProducts = products.filter((item) => item.category?.id === televisionCategoryId);
+  const filteredProducts = televisionCategoryId
+    ? products.filter((item) => item.category?.id === televisionCategoryId)
+    : [];
+
+  console.log("Filtered Television Products:", filteredProducts); // Debugging
 
   return (
     <Container>
@@ -68,6 +76,9 @@ export default function Television() {
         )}
         {!loading && !error && televisionCategoryId && filteredProducts.length === 0 && (
           <p>No televisions available at the moment.</p> // Handle no products for the category
+        )}
+        {!loading && !error && !televisionCategoryId && (
+          <p>Television category not found.</p> // Handle missing television category
         )}
       </Row>
     </Container>
