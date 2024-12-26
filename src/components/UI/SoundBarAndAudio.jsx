@@ -32,15 +32,17 @@ const SoundBarAndAudio = () => {
     fetchData();
   }, []);
 
-  // Log the category titles to verify the exact category name
+  // Log all category titles and their corresponding ids for debugging
   useEffect(() => {
-    console.log("Category Titles:", categories.map(category => category.title)); // Logs all category titles
+    categories.forEach(category => {
+      console.log(`Category Title: ${category.title}, ID: ${category.id}`);
+    });
   }, [categories]);
 
-  // Match the category name 'Sound bars and Audios' in a case-insensitive way
+  // Match the category name 'Sound  bars and Audios' with two spaces after "Sound"
   const soundBarAndAudioCategoryId = categories.find(
     (category) =>
-      category.title.toLowerCase().trim() === 'sound bars and audios'
+      category.title.toLowerCase().trim() === 'sound  bars and audios' // Fixed space issue
   )?.id;
 
   console.log("SoundBarAndAudio Category ID:", soundBarAndAudioCategoryId); // Log category ID
