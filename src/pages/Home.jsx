@@ -118,7 +118,6 @@ const Home = () => {
               </Container>
             </section>
 
-          
             <section className="trending__products">
               <Container>
                 <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
@@ -131,6 +130,14 @@ const Home = () => {
               <Container>
                 <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
                   <Cookers data={cookerProducts} />
+                </Row>
+              </Container>
+            </section>
+
+            <section className="trending__products">
+              <Container>
+                <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                  <Fridge data={fridgeProducts} />
                 </Row>
               </Container>
             </section>
