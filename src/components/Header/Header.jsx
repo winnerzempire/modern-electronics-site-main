@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
+import "./header.css";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import viqtech from "../../assets/images/Viq Tech-1.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
@@ -10,15 +11,28 @@ import useAuth from "../../custom-hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { toast } from "react-toastify";
+import "./index.scss";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
-import './navbar.scss';  // Ensure this file exists and styles are defined
 
-const navLinks = [
-  { path: "/", display: "Home" },
-  { path: "shop", display: "Shop" },
-  { path: "service", display: "Services" },
-  { path: "cart", display: "Cart" },
-  { path: "contact", display: "Contact" } // Contact page
+const nav__link = [
+  {
+    path: ".",
+    display: "Home",
+  },
+
+  {
+    path: "shop",
+    display: "Shop",
+  },
+
+  {
+    path: "service",
+    display: "Services",
+  },
+  {
+    path: "cart",
+    display: "Cart",
+  },
 ];
 
 const Header = () => {
@@ -28,60 +42,67 @@ const Header = () => {
   const navigate = useNavigate();
   const profileActionsRef = useRef(null);
   const { currentUser } = useAuth();
-
-  // Sticky header effect
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        headerRef.current?.classList.add("sticky__header");
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current?.classList?.add("sticky__header");
       } else {
-        headerRef.current?.classList.remove("sticky__header");
+        headerRef.current?.classList?.remove("sticky__header");
       }
     });
   };
-
+  const whatsappInfo = {
+    phoneNumber: "+254720998118",
+    // chatMessage:"Hi, this is Comfort Furnitures how can I help",
+    showPopup: true,
+    accountName: "Viqtech",
+    placeholder: "Type a message...",
+    // avatar:<img src={userIcon} width="40px" alt="userIcon"/>
+  };
   useEffect(() => {
     stickyHeaderFunc();
     return () => window.removeEventListener("scroll", stickyHeaderFunc);
   });
-
   const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+  const navigateToCart = (nav) => {
+    navigate(nav);
+  };
+  const toggleProfileActions = () =>
+    profileActionsRef.current.classList.toggle("show__profileActions");
 
   const logout = () => {
     signOut(auth)
       .then(() => {
-        toast.success("Logged out successfully");
-        navigate("/");
+        toast.success("logged out");
+        navigate(".");
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
-
-  const whatsappInfo = {
-    phoneNumber: "+254720998118",
-    showPopup: true,
-    accountName: "ViqTech Support",
-    placeholder: "Type a message...",
-  };
-
   return (
     <header className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav__wrapper">
-            {/* Logo and Company Name */}
-            <div className="logo">
-              <img className="logo__image" src={viqtech} alt="ViqTech Logo" />
-              <h1 onClick={() => navigate("/")}>ViqTech</h1>
+            <div className="logo logo__animate">
+              <img className="animate__image" src={viqtech} alt="logo" />
+              <div>
+                <h1 onClick={() => navigateToCart("/")}>ViqTech</h1>
+              </div>
             </div>
-
-            {/* Navigation Menu */}
             <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">
-                {navLinks.map((item, index) => (
+                {nav__link.map((item, index) => (
                   <li key={index} className="nav__item">
                     <NavLink
                       to={item.path}
-                      className={({ isActive }) => (isActive ? "nav__active" : "")}
+                      className={({ isActive }) =>
+                        isActive ? "nav_active" : ""
+                      }
                     >
                       {item.display}
                     </NavLink>
@@ -89,34 +110,48 @@ const Header = () => {
                 ))}
               </ul>
             </div>
-
-            {/* Right side icons (Cart, Profile, WhatsApp) */}
             <div className="nav__icons">
-              {/* Cart Icon */}
-              <span className="cart__icon" onClick={() => navigate("/cart")}>
+              {/* function name does not bare literal meaning */}
+              <span
+                className="fav__icon"
+                onClick={() => navigateToCart("/contact")}
+              >
+                <i className="ri-mail-send-fill"></i>
+              </span>
+
+              <span
+                className="cart__icon"
+                onClick={() => navigateToCart("/cart")}
+              >
                 <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{total}</span>
               </span>
-
-              {/* Profile Icon */}
+              <Link to="https://www.instagram.com/viqtech_ke">
+                <span className="cart__icon">
+                  <i className="ri-instagram-line"></i>
+                </span>
+              </Link>
+              <FloatingWhatsApp {...whatsappInfo} />
               <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
-                  src={currentUser?.photoURL || userIcon}
-                  alt="User Profile"
-                  onClick={() => profileActionsRef.current.classList.toggle("show__profileActions")}
+                  src={currentUser?.photoURL ? currentUser.photoURL : userIcon}
+                  alt=""
+                  onClick={toggleProfileActions}
                 />
 
-                {/* Profile Actions */}
                 <div
                   className="profile__actions"
                   ref={profileActionsRef}
-                  onClick={() => profileActionsRef.current.classList.remove("show__profileActions")}
+                  onClick={toggleProfileActions}
                 >
                   {currentUser ? (
                     <span onClick={logout}>Logout</span>
                   ) : (
-                    <div className="d-flex align-items-center flex-column">
+                    <div
+                      className="d-flex align-items-center flex-column
+             justify-content-center"
+                    >
                       <Link to="/signup">Signup</Link>
                       <Link to="/login">Login</Link>
                     </div>
@@ -124,12 +159,8 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* WhatsApp Floating Icon */}
-              <FloatingWhatsApp {...whatsappInfo} />
-
-              {/* Mobile Menu */}
-              <div className="mobile__menu" onClick={menuToggle}>
-                <span>
+              <div className="mobile__menu">
+                <span onClick={menuToggle}>
                   <i className="ri-menu-line"></i>
                 </span>
               </div>
