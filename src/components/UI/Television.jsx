@@ -49,6 +49,9 @@ export default function Television() {
     (category) => category.title.toLowerCase() === "televisions"
   )?.id;
 
+  // Ensure products and categories are both loaded before filtering
+  const filteredProducts = products.filter((item) => item.category?.id === televisionCategoryId);
+
   return (
     <Container>
       <Row>
@@ -59,11 +62,12 @@ export default function Television() {
         {loading && <p>Loading products...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        {/* If products are fetched, filter by the television category */}
-        {!loading && !error && televisionCategoryId && (
-          <ProductsList
-            data={products.filter((item) => item.category?.id === televisionCategoryId)} // Filter products by television category
-          />
+        {/* Only show ProductsList if both products and categories are loaded */}
+        {!loading && !error && televisionCategoryId && filteredProducts.length > 0 && (
+          <ProductsList data={filteredProducts} /> // Display filtered television products
+        )}
+        {!loading && !error && televisionCategoryId && filteredProducts.length === 0 && (
+          <p>No televisions available at the moment.</p> // Handle no products for the category
         )}
       </Row>
     </Container>
