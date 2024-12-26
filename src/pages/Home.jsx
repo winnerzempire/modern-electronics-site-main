@@ -126,38 +126,15 @@ const Home = () => {
                 </Row>
               </Container>
             </section>
-          
 
-          {/* Limited Offers Section */}
-          {productOnOffer && (
-            <section className="timer__count">
-              <LimitedOffers productOnOffer={productOnOffer} />
+            <section className="trending__products">
+              <Container>
+                <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                  <Cookers data={cookerProducts} />
+                </Row>
+              </Container>
             </section>
-          )}
-
-          {/* New Arrivals Section */}
-          <section className="new__arrivals">
-            <Container>
-              <Row className="d-flex flex-sm-column flex-md-row align-items-center justify-content-between gap-5">
-                {cookerProducts.length > 0 && <Cookers cooker={cookerProducts} />}
-                {soundProducts.length > 0 && <SoundBarAndAudio soundItem={soundProducts} />}
-              </Row>
-            </Container>
-          </section>
-
-          {/* Fridge Products Section */}
-          {fridgeProducts.length > 0 && (
-            <section className="popular__category">
-              <Fridge fridgeProducts={fridgeProducts} />
-            </section>
-          )}
-
-          {/* Gaming Products Section */}
-          {gamingProducts.length > 0 && (
-            <section className="popular__category">
-              <Gaming gamingProducts={gamingProducts} />
-            </section>
-          )}
+        
         </Helmet>
       ) : (
         <Spinner />
