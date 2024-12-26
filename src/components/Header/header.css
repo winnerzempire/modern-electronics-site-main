@@ -123,6 +123,31 @@
   z-index: 999;
   box-shadow: 3px 3px 8px -3px;
 }
+.search__row {
+  margin-top: 20px;  /* Adds spacing between the navbar and the search bar */
+}
+
+.search__bar {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search__bar .input-group {
+  width: 100%;
+}
+
+.search__bar .input-group-text {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.search__bar input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
 @media only screen and (max-width: 760px) {
   .sticky__header {
     width: 100%;
