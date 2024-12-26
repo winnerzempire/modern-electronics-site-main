@@ -17,10 +17,12 @@ const SoundBarAndAudio = () => {
         // Fetch categories
         const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/');
         setCategories(categoryResponse.data);
+        console.log("Categories fetched:", categoryResponse.data); // Log categories
 
         // Fetch products
         const productResponse = await axios.get('https://viqtech.co.ke/api/products/products/');
         setProducts(productResponse.data);
+        console.log("Products fetched:", productResponse.data); // Log products
       } catch (err) {
         setError('Failed to load data');
       } finally {
@@ -31,15 +33,20 @@ const SoundBarAndAudio = () => {
     fetchData();
   }, []);
 
-  // Find the SoundBar and Audio category ID based on the category title
+  // Ensure case-insensitive category title match and trim spaces
   const soundBarAndAudioCategoryId = categories.find(
-    (category) => category.title.toLowerCase() === 'soundbarandaudio'
+    (category) =>
+      category.title.toLowerCase().trim() === 'soundbarandaudio'
   )?.id;
+
+  console.log("SoundBarAndAudio Category ID:", soundBarAndAudioCategoryId); // Log category ID
 
   // Filter products based on SoundBar and Audio category ID
   const filteredProducts = products.filter(
     (item) => item.category?.id === soundBarAndAudioCategoryId
   );
+
+  console.log("Filtered Products:", filteredProducts); // Log filtered products
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
