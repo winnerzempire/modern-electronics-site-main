@@ -11,7 +11,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { toast } from "react-toastify";
-import "./navbar.scss";
+import "./header.css";
 
 const navLinks = [
   { path: "/", display: "Home" },
