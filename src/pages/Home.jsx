@@ -110,9 +110,6 @@ const Home = () => {
             <section className="trending__products">
               <Container>
                 <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
-                  <Col lg="12" className="text-center">
-                    <h2 className="section__title">Televisions</h2>
-                  </Col>
                   <Television data={televisionProducts} />
                 </Row>
               </Container>
@@ -138,6 +135,14 @@ const Home = () => {
               <Container>
                 <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
                   <Fridge data={fridgeProducts} />
+                </Row>
+              </Container>
+            </section>
+
+            <section className="trending__products">
+              <Container>
+                <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                  <Gaming data={gamingProducts} />
                 </Row>
               </Container>
             </section>
