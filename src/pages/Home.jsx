@@ -117,6 +117,15 @@ const Home = () => {
                 </Row>
               </Container>
             </section>
+
+          
+            <section className="trending__products">
+              <Container>
+                <Row className="d-flex flex-sm-column align-items-center justify-content-between gap-5">
+                  <SoundBarAndAudio data={soundProducts} />
+                </Row>
+              </Container>
+            </section>
           
 
           {/* Limited Offers Section */}
