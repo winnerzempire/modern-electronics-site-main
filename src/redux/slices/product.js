@@ -9,16 +9,13 @@ const initialState=productAdaptor.getInitialState({
   error:null
 })
 
-export const fetchProducts=createAsyncThunk("products/fetchProducts", async()=>{
-  try {
+export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
+  const URL = "https://viqtech.co.ke/api/products/";
+  const res = await axios.get(URL);
+  return res.data;
+});
 
-    const res=await axios.get(URL)
-    return [...res.data]
-    
-  } catch (error) {
-    return error.message
-  }
-})
+
 
 
 const productSlice = createSlice({
