@@ -8,7 +8,6 @@ const SoundBarAndAudio = () => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  const [soundProducts, setSoundProducts] = useState([]);
 
   // Fetch categories and products in parallel
   useEffect(() => {
@@ -33,10 +32,15 @@ const SoundBarAndAudio = () => {
     fetchData();
   }, []);
 
+  // Log the category titles to verify the exact category name
+  useEffect(() => {
+    console.log("Category Titles:", categories.map(category => category.title));
+  }, [categories]);
+
   // Ensure case-insensitive category title match and trim spaces
   const soundBarAndAudioCategoryId = categories.find(
     (category) =>
-      category.title.toLowerCase().trim() === 'Sound bars and Audios'
+      category.title.toLowerCase().trim() === 'sound bars and audios'
   )?.id;
 
   console.log("SoundBarAndAudio Category ID:", soundBarAndAudioCategoryId); // Log category ID
