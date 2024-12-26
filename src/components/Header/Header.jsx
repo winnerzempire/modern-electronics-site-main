@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import { Container, Row, Col, InputGroup, InputGroupText, Input } from "reactstrap";
-import viqtechLogo from "../../assets/images/Viq Tech-1.png";
+import { Container, Row, Col } from "reactstrap";
+import viqtech from "../../assets/images/Viq Tech-1.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -9,71 +9,57 @@ import { totalQuantity } from "../../redux/slices/cartSlice";
 import useAuth from "../../custom-hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
-import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { toast } from "react-toastify";
-import "./header.css";
+import { FloatingWhatsApp } from "react-floating-whatsapp";
+import './navbar.scss';  // Ensure this file exists and styles are defined
 
 const navLinks = [
   { path: "/", display: "Home" },
-  { path: "/shop", display: "Shop" },
-  { path: "/services", display: "Services" },
-  { path: "/cart", display: "Cart" },
+  { path: "shop", display: "Shop" },
+  { path: "service", display: "Services" },
+  { path: "cart", display: "Cart" },
+  { path: "contact", display: "Contact" } // Contact page
 ];
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const headerRef = useRef(null);
   const menuRef = useRef(null);
-  const profileActionsRef = useRef(null);
   const total = useSelector(totalQuantity);
   const navigate = useNavigate();
+  const profileActionsRef = useRef(null);
   const { currentUser } = useAuth();
 
+  // Sticky header effect
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        headerRef.current?.classList?.add("sticky__header");
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        headerRef.current?.classList.add("sticky__header");
       } else {
-        headerRef.current?.classList?.remove("sticky__header");
+        headerRef.current?.classList.remove("sticky__header");
       }
     });
-  };
-
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
-
-  const handleSearchSubmit = () => {
-    if (searchQuery.trim()) {
-      navigate(`/search?query=${searchQuery}`);
-    }
-  };
-
-  const toggleProfileActions = () =>
-    profileActionsRef.current.classList.toggle("show__profileActions");
-
-  const logout = () => {
-    signOut(auth)
-      .then(() => {
-        toast.success("Logged out");
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
   };
 
   useEffect(() => {
     stickyHeaderFunc();
     return () => window.removeEventListener("scroll", stickyHeaderFunc);
-  }, []);
+  });
 
-  // WhatsApp information
+  const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("Logged out successfully");
+        navigate("/");
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
   const whatsappInfo = {
-    phoneNumber: "+254702122421",
+    phoneNumber: "+254720998118",
     showPopup: true,
-    accountName: "disonobudho233",
+    accountName: "ViqTech Support",
     placeholder: "Type a message...",
   };
 
@@ -82,24 +68,20 @@ const Header = () => {
       <Container>
         <Row>
           <div className="nav__wrapper">
-            {/* Logo Section */}
+            {/* Logo and Company Name */}
             <div className="logo">
-              <Link to="/">
-                <img src={viqtechLogo} alt="ViqTech" className="logo__img" />
-                <h1 className="logo__text">ViqTech</h1>
-              </Link>
+              <img className="logo__image" src={viqtech} alt="ViqTech Logo" />
+              <h1 onClick={() => navigate("/")}>ViqTech</h1>
             </div>
 
-            {/* Navigation Links */}
-            <div className="navigation" ref={menuRef}>
-              <ul className="nav__links">
+            {/* Navigation Menu */}
+            <div className="navigation" ref={menuRef} onClick={menuToggle}>
+              <ul className="menu">
                 {navLinks.map((item, index) => (
                   <li key={index} className="nav__item">
                     <NavLink
                       to={item.path}
-                      className={({ isActive }) =>
-                        isActive ? "nav__link--active" : "nav__link"
-                      }
+                      className={({ isActive }) => (isActive ? "nav__active" : "")}
                     >
                       {item.display}
                     </NavLink>
@@ -108,36 +90,33 @@ const Header = () => {
               </ul>
             </div>
 
-            {/* Search Bar Section */}
-            <Col lg="4" className="search__bar">
-              <InputGroup>
-                <Input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-                <InputGroupText onClick={handleSearchSubmit}>
-                  <i className="ri-search-line"></i>
-                </InputGroupText>
-              </InputGroup>
-            </Col>
-
-            {/* User Profile & Cart Icons */}
+            {/* Right side icons (Cart, Profile, WhatsApp) */}
             <div className="nav__icons">
+              {/* Cart Icon */}
+              <span className="cart__icon" onClick={() => navigate("/cart")}>
+                <i className="ri-shopping-bag-line"></i>
+                <span className="badge">{total}</span>
+              </span>
+
+              {/* Profile Icon */}
               <div className="profile">
                 <motion.img
                   whileTap={{ scale: 1.2 }}
                   src={currentUser?.photoURL || userIcon}
-                  alt="User"
-                  className="profile__img"
-                  onClick={toggleProfileActions}
+                  alt="User Profile"
+                  onClick={() => profileActionsRef.current.classList.toggle("show__profileActions")}
                 />
-                <div className="profile__actions" ref={profileActionsRef}>
+
+                {/* Profile Actions */}
+                <div
+                  className="profile__actions"
+                  ref={profileActionsRef}
+                  onClick={() => profileActionsRef.current.classList.remove("show__profileActions")}
+                >
                   {currentUser ? (
                     <span onClick={logout}>Logout</span>
                   ) : (
-                    <div className="auth__links">
+                    <div className="d-flex align-items-center flex-column">
                       <Link to="/signup">Signup</Link>
                       <Link to="/login">Login</Link>
                     </div>
@@ -145,18 +124,15 @@ const Header = () => {
                 </div>
               </div>
 
-              <span className="cart__icon" onClick={() => navigate("/cart")}>
-                <i className="ri-shopping-bag-line"></i>
-                <span className="cart__badge">{total}</span>
-              </span>
-
-              {/* WhatsApp Icon */}
+              {/* WhatsApp Floating Icon */}
               <FloatingWhatsApp {...whatsappInfo} />
-            </div>
 
-            {/* Mobile Menu */}
-            <div className="mobile__menu" onClick={() => menuRef.current.classList.toggle("active__menu")}>
-              <i className="ri-menu-line"></i>
+              {/* Mobile Menu */}
+              <div className="mobile__menu" onClick={menuToggle}>
+                <span>
+                  <i className="ri-menu-line"></i>
+                </span>
+              </div>
             </div>
           </div>
         </Row>
