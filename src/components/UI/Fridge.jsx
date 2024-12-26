@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import ProductsList from './ProductsList';
+import ProductCard from './ProductCard'; // Assuming you are using ProductCard to display each product
 import './product.css'; // Import styles if needed
 
 function Fridge() {
@@ -61,7 +61,15 @@ function Fridge() {
           </Col>
 
           {/* Display filtered products */}
-          <ProductsList data={filteredProducts} />
+          <div className="products-list">
+            {filteredProducts.length === 0 ? (
+              <p>No products found</p>
+            ) : (
+              filteredProducts.map((item) => (
+                <ProductCard key={item.id} item={item} />
+              ))
+            )}
+          </div>
         </Row>
       </Container>
     </div>
