@@ -34,10 +34,10 @@ const SoundBarAndAudio = () => {
 
   // Log the category titles to verify the exact category name
   useEffect(() => {
-    console.log("Category Titles:", categories.map(category => category.title));
+    console.log("Category Titles:", categories.map(category => category.title)); // Logs all category titles
   }, [categories]);
 
-  // Ensure case-insensitive category title match and trim spaces
+  // Match the category name 'Sound bars and Audios' in a case-insensitive way
   const soundBarAndAudioCategoryId = categories.find(
     (category) =>
       category.title.toLowerCase().trim() === 'sound bars and audios'
