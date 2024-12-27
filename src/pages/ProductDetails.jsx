@@ -127,7 +127,11 @@ const ProductDetails = () => {
         <PriceFormat price={price} />
       </span>
     </div>
-    <p className="mt-3">{shortDisc}</p>
+    <ul>
+        {product.shortDiscList.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     <div className="mt-2">
       <span>Category: {category?.title.toUpperCase()}</span>
     </div>
