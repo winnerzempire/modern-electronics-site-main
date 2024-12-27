@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import "../styles/product-detail.css";
@@ -25,7 +25,6 @@ const ProductDetails = () => {
   const reviewUser = useRef();
   const reviewMsg = useRef();
   const products = useSelector(selectAll);
-  const navigate = useNavigate();
   const authentication = useSelector(getAunthentication);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -35,9 +34,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `https://viqtech.co.ke/api/products/products/${id}`
-        );
+        const response = await fetch(`https://viqtech.co.ke/api/products/products/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
         }
@@ -71,16 +68,7 @@ const ProductDetails = () => {
     return <Spinner />;
   }
 
-  const {
-    imgUrl,
-    productName,
-    price,
-    total_rating,
-    reviews,
-    description,
-    shortDiscList, // Updated to use the new list field
-    category,
-  } = product;
+  const { imgUrl, productName, price, total_rating, reviews, description, shortDisc, category } = product;
 
   const addToCart = () => {
     dispatch(
@@ -94,9 +82,7 @@ const ProductDetails = () => {
     toast.success("Product added successfully");
   };
 
-  const relatedProducts = products.filter(
-    (item) => item?.category.title === category?.title
-  );
+  const relatedProducts = products.filter((item) => item?.category.title === category?.title);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -142,11 +128,13 @@ const ProductDetails = () => {
                     <PriceFormat price={price} />
                   </span>
                 </div>
-                {/* Short Description List */}
+                {/* Short Description or Detailed List */}
                 <ul>
-                  {shortDiscList && shortDiscList.length > 0 ? (
-                    shortDiscList.map((item, index) => (
-                      <li key={index}>{item}</li>
+                  {shortDisc ? (
+                    <li>{shortDisc}</li>
+                  ) : description ? (
+                    description.split("\r\n").map((line, index) => (
+                      <li key={index}>{line}</li>
                     ))
                   ) : (
                     <li>No additional details available.</li>
@@ -245,7 +233,7 @@ const ProductDetails = () => {
                           type="submit"
                           className="buy__btn"
                         >
-                          {loading ? "Submitting..." : "Submit"}
+                          Submit
                         </motion.button>
                       </form>
                     </div>
