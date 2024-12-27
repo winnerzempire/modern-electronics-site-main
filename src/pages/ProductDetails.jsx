@@ -128,6 +128,7 @@ const ProductDetails = () => {
                     <PriceFormat price={price} />
                   </span>
                 </div>
+                <h2>Key Features</h2>
                 {/* Short Description or Detailed List */}
                 <ul>
                   {shortDisc ? (
