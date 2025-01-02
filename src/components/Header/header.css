@@ -1,86 +1,99 @@
-/* Main header styles */
+/* Main Header Styles */
 .header {
   background-color: #003366; /* Dark blue background */
-  color: #fff; /* White text for contrast */
-  padding: 10px 0; /* Padding around the header */
-  width: 100%; /* Ensure the header spans full width */
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  transition: background-color 0.3s ease-in-out; /* Smooth transition when scrolling */
+  padding: 15px 0; /* Padding for spacing */
+  color: #fff; /* White text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick it to the top */
+  z-index: 999; /* Make sure it appears above other content */
+  width: 100%; /* Ensure it takes full width */
 }
 
-/* Sticky header when scrolling */
-.sticky__header {
-  background-color: #002244; /* Slightly darker blue for sticky header */
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visibility */
-}
-
-/* Logo */
+/* Logo Section */
 .logo h1 {
-  color: #fff; /* White color for logo text */
+  color: #fff;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* Search bar */
-.search__bar input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  outline: none;
-  width: 200px; /* Adjust width to fit better */
-  transition: width 0.3s ease; /* Smooth expansion on focus */
+.logo img {
+  width: 40px; /* Adjust the logo size */
+  height: 40px;
+  margin-right: 10px;
 }
 
-.search__bar input:focus {
-  width: 250px; /* Expand search bar when focused */
+/* Search Bar */
+.search__bar input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+  outline: none;
 }
 
 .search__bar button {
-  background-color: #0055a5; /* Lighter blue for the search button */
-  color: white;
+  background-color: #0055a5;
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
 }
 
-/* Menu */
-.menu {
+/* Navigation Menu */
+.navigation .menu {
   display: flex;
+  gap: 1.5rem;
   align-items: center;
-  gap: 2rem;
+  margin-left: auto;
 }
 
-.nav__item {
+.nav__item a {
+  color: #fff;
   font-size: 1rem;
-  color: #fff; /* White color for menu items */
   font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease; /* Smooth color transition on hover */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.nav__item:hover {
-  color: #ffcc00; /* Gold color for hover effect */
+.nav__item a:hover {
+  color: #ffcc00; /* Gold color on hover */
 }
 
 .nav__icons {
   display: flex;
-  align-items: center;
   gap: 1.5rem;
+  align-items: center;
 }
 
-.nav__icons span i {
-  font-size: 1.5rem;
-  color: #fff; /* Icon color */
+.nav__icons span {
   cursor: pointer;
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: #fff;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
 }
 
-.nav__icons span:hover i {
+.nav__icons span:hover {
   color: #ffcc00; /* Gold color on hover */
+}
+
+/* Profile Dropdown */
+.profile__actions {
+  background-color: #003366;
+  color: #fff;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  padding: 10px;
+  border-radius: 4px;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.profile__actions.show__profileActions {
+  display: block;
 }
 
 .profile img {
@@ -88,61 +101,60 @@
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.3s ease; /* Add a smooth scaling effect */
+  transition: transform 0.3s ease;
 }
 
 .profile img:hover {
-  transform: scale(1.1); /* Scale up the profile icon on hover */
+  transform: scale(1.1); /* Slight scale effect on hover */
 }
 
-.profile__actions {
-  background: #003366; /* Dark blue for the dropdown */
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 100%;
-  right: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.profile__actions a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.profile__actions a:hover {
-  color: #ffcc00; /* Gold hover effect for links */
-}
-
-.profile__actions.show__profileActions {
-  display: block; /* Show the profile actions dropdown when active */
-}
-
+/* Mobile Menu */
 .mobile__menu {
-  display: none; /* Hide mobile menu by default */
+  display: none;
 }
 
-@media only screen and (max-width: 760px) {
-  .mobile__menu {
-    display: block;
-    font-size: 1.5rem;
-    color: #fff;
-  }
-
+@media (max-width: 768px) {
   .nav__wrapper {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .menu {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .logo h1 {
-    font-size: 1.3rem;
+  .search__bar {
+    margin-bottom: 10px;
+  }
+
+  .mobile__menu {
+    display: block;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav__item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav__item a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav__wrapper.active__menu .menu {
+    display: flex;
   }
 }
