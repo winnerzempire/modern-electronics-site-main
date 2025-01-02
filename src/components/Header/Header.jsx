@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./header.css";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { Container, Row } from "reactstrap";
@@ -19,12 +19,10 @@ const nav__link = [
     path: ".",
     display: "Home",
   },
-
   {
     path: "shop",
     display: "Shop",
   },
-
   {
     path: "service",
     display: "Services",
@@ -36,12 +34,14 @@ const nav__link = [
 ];
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const total = useSelector(totalQuantity);
   const navigate = useNavigate();
   const profileActionsRef = useRef(null);
   const { currentUser } = useAuth();
+
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
       if (
@@ -54,35 +54,44 @@ const Header = () => {
       }
     });
   };
-  const whatsappInfo = {
-    phoneNumber: "+254720998118",
-    // chatMessage:"Hi, this is Comfort Furnitures how can I help",
-    showPopup: true,
-    accountName: "Viqtech",
-    placeholder: "Type a message...",
-    // avatar:<img src={userIcon} width="40px" alt="userIcon"/>
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${searchQuery}`);
   };
+
   useEffect(() => {
     stickyHeaderFunc();
     return () => window.removeEventListener("scroll", stickyHeaderFunc);
   });
+
   const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+
   const navigateToCart = (nav) => {
     navigate(nav);
   };
+
   const toggleProfileActions = () =>
     profileActionsRef.current.classList.toggle("show__profileActions");
 
   const logout = () => {
     signOut(auth)
       .then(() => {
-        toast.success("logged out");
+        toast.success("Logged out");
         navigate(".");
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
+
+  const whatsappInfo = {
+    phoneNumber: "+254720998118",
+    showPopup: true,
+    accountName: "Viqtech",
+    placeholder: "Type a message...",
+  };
+
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -94,6 +103,20 @@ const Header = () => {
                 <h1 onClick={() => navigateToCart("/")}>ViqTech</h1>
               </div>
             </div>
+
+            {/* Search Bar */}
+            <form className="search__bar" onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="submit">
+                <i className="ri-search-line"></i>
+              </button>
+            </form>
+
             <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">
                 {nav__link.map((item, index) => (
@@ -110,15 +133,14 @@ const Header = () => {
                 ))}
               </ul>
             </div>
+
             <div className="nav__icons">
-              {/* function name does not bare literal meaning */}
               <span
                 className="fav__icon"
                 onClick={() => navigateToCart("/contact")}
               >
                 <i className="ri-mail-send-fill"></i>
               </span>
-
               <span
                 className="cart__icon"
                 onClick={() => navigateToCart("/cart")}
@@ -136,10 +158,9 @@ const Header = () => {
                 <motion.img
                   whileTap={{ scale: 1.2 }}
                   src={currentUser?.photoURL ? currentUser.photoURL : userIcon}
-                  alt=""
+                  alt="user"
                   onClick={toggleProfileActions}
                 />
-
                 <div
                   className="profile__actions"
                   ref={profileActionsRef}
@@ -148,17 +169,13 @@ const Header = () => {
                   {currentUser ? (
                     <span onClick={logout}>Logout</span>
                   ) : (
-                    <div
-                      className="d-flex align-items-center flex-column
-             justify-content-center"
-                    >
+                    <div className="d-flex align-items-center flex-column justify-content-center">
                       <Link to="/signup">Signup</Link>
                       <Link to="/login">Login</Link>
                     </div>
                   )}
                 </div>
               </div>
-
               <div className="mobile__menu">
                 <span onClick={menuToggle}>
                   <i className="ri-menu-line"></i>
