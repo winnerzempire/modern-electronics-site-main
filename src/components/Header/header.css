@@ -129,7 +129,8 @@
 .search__bar {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .search__bar input {
