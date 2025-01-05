@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import "./header.css";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { Container, Row } from "reactstrap";
-import viqtech from "../../assets/images/Viq Tech-1.png";
+import viqtech from "../../assets/images/cee.png";
 import userIcon from "../../assets/images/user-icon.png";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -105,6 +105,7 @@ const Header = () => {
             </div>
 
             {/* Search Bar */}
+            <div className="search">
             <form className="search__bar" onSubmit={handleSearch}>
               <input
                 type="text"
@@ -116,7 +117,8 @@ const Header = () => {
                 <i className="ri-search-line"></i>
               </button>
             </form>
-
+            </div>
+            
             <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">
                 {nav__link.map((item, index) => (
