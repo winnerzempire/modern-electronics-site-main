@@ -104,7 +104,7 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Search Bar */}
+            {/* Search Bar
             <div className="search">
             <form className="search__bar" onSubmit={handleSearch}>
               <input
@@ -117,7 +117,7 @@ const Header = () => {
                 <i className="ri-search-line"></i>
               </button>
             </form>
-            </div>
+            </div> */}
             
             <div className="navigation" ref={menuRef} onClick={menuToggle}>
               <ul className="menu">
