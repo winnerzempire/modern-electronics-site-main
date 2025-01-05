@@ -295,44 +295,4 @@ body {
     display: block; /* Show menu when active */
   }
  
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
-    padding: 10px;
-  }
-
-  /* Move the search bar below the navbar */
-  .search {
-    width: 100%;
-    margin-top: 20px; /* Add spacing between navbar and search bar */
-  }
-
-  .search__bar {
-    width: 90%; /* Adjust the width for mobile screens */
-    max-width: 300px; /* Optional: Set a maximum width */
-    margin: 0 auto; /* Center the search bar */
-  }
-
-  .search__bar input {
-    font-size: 12px; /* Adjust input font size */
-  }
-
-  .search__bar button {
-    font-size: 14px;
-    padding: 0 10px;
-  }
-
-  .menu {
-    display: none;
-  }
-
-  .logo img {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .logo h1 {
-    font-size: 1rem;
-  }
 }
