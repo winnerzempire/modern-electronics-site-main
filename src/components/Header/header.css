@@ -299,6 +299,27 @@ body {
     margin: 0 auto;
   }
 
+  .header {
+    display: flex;
+    flex-direction: column; /* Stack navbar and search bar vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .navbar {
+    width: 100%; /* Ensure navbar takes full width */
+  }
+
+  .search {
+    width: 100%; /* Ensure search bar takes full width */
+    margin-top: 10px; /* Add space between navbar and search bar */
+  }
+
+  .search__bar {
+    width: 90%; /* Adjust the width for mobile screens */
+    max-width: 300px; /* Optional: Set a maximum width */
+    margin: 0 auto; /* Center the search bar */
+  }
+
   .search__bar input {
     font-size: 12px; /* Adjust input font size */
   }
@@ -307,4 +328,6 @@ body {
     font-size: 14px;
     padding: 0 10px;
   }
+
+ 
 }
