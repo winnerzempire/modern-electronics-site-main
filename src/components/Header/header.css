@@ -287,4 +287,11 @@ body {
     height: 60px;
     line-height: 60px;
   }
+  .navigation {
+    display: none; /* Default state */
+  }
+
+  .active__menu {
+    display: block; /* Show menu when active */
+  }
 }
