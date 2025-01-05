@@ -294,4 +294,17 @@ body {
   .active__menu {
     display: block; /* Show menu when active */
   }
+  .search__bar {
+    width: 80%; /* Smaller width for mobile */
+    margin: 0 auto;
+  }
+
+  .search__bar input {
+    font-size: 12px; /* Adjust input font size */
+  }
+
+  .search__bar button {
+    font-size: 14px;
+    padding: 0 10px;
+  }
 }
