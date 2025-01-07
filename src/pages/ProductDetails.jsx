@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import "../styles/product-detail.css";
@@ -11,13 +11,10 @@ import ProductsList from "../components/UI/ProductsList";
 import { toast } from "react-toastify";
 import { selectAll, updateReview } from "../redux/slices/product";
 import { submitReview } from "../utils/getAuth";
-import Stars from "../components/UI/Stars";
-import { getAunthentication } from "../redux/slices/loginSlice";
 import Spinner from "../components/Spinner";
 import PriceFormat from "../components/Format";
 
 const ProductDetails = () => {
-  // States
   const [tab, setTab] = useState("desc");
   const [rating, setRating] = useState(0);
   const [product, setProduct] = useState(null);
@@ -26,13 +23,12 @@ const ProductDetails = () => {
   const reviewUser = useRef();
   const reviewMsg = useRef();
   const products = useSelector(selectAll);
-  const authentication = useSelector(getAunthentication);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [reviewData, setReview] = useState([]);
   const item_id = parseInt(id);
 
-  // Fetch product data from API
+  // Fetch product data
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -54,29 +50,12 @@ const ProductDetails = () => {
     window.scrollTo(0, 300);
   }, [id]);
 
-  // Redirect to home page if not authenticated
-  // if (!authentication) {
-  //   return <Navigate to="/" replace />;
-  // }
+  if (loading) return <Spinner />;
+  if (error) return <p>{error}</p>;
+  if (!product) return <Spinner />;
 
-  // Display a loading spinner while data is being fetched
-  if (loading) {
-    return <Spinner />;
-  }
+  const { imgUrl, productName, price, description, shortDisc, category } = product;
 
-  // Display error if fetching product fails
-  if (error) {
-    return <p>{error}</p>;
-  }
-
-  // Display a loading spinner if no product data is available yet
-  if (!product) {
-    return <Spinner />;
-  }
-
-  const { imgUrl, productName, price, total_rating, reviews, description, shortDisc, category } = product;
-
-  // Handle adding product to the cart
   const addToCart = () => {
     dispatch(
       addItem({
@@ -89,13 +68,11 @@ const ProductDetails = () => {
     toast.success("Product added successfully");
   };
 
-  // Get related products based on category
-  const relatedProducts = products.filter((item) => item?.category.title === category?.title);
+  const relatedProducts = products.filter((item) => item?.category?.title === category?.title);
 
-  // Handle submitting a review
   const submitHandler = async (e) => {
     e.preventDefault();
-    const reviewUserMsg = reviewMsg?.current.value;
+    const reviewUserMsg = reviewMsg.current.value;
     const reviewObj = {
       userName: reviewUser.current.value,
       text: reviewUserMsg,
@@ -138,7 +115,6 @@ const ProductDetails = () => {
                   </span>
                 </div>
                 <h2>Key Features</h2>
-                {/* Short Description or Detailed List */}
                 <ul>
                   {shortDisc ? (
                     <li>{shortDisc}</li>
@@ -199,7 +175,7 @@ const ProductDetails = () => {
                   <div className="review__wrapper">
                     <ul>
                       {reviewData.map((item, index) => (
-                        <li key={index} className="mt-4">
+                        <li key={item.id || index} className="mt-4">
                           <h6>{item?.userName}</h6>
                           <span>{item?.rating} (average rating)</span>
                           <p>{item?.text}</p>
