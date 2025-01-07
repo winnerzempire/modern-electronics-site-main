@@ -1,4 +1,23 @@
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Row, Col } from "reactstrap";
+import { useParams, Navigate } from "react-router-dom";
+import Helmet from "../components/Helmet/Helmet";
+import CommonSection from "../components/UI/CommonSection";
+import "../styles/product-detail.css";
+import { motion } from "framer-motion";
+import { addItem } from "../redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import ProductsList from "../components/UI/ProductsList";
+import { toast } from "react-toastify";
+import { selectAll, updateReview } from "../redux/slices/product";
+import { submitReview } from "../utils/getAuth";
+import Stars from "../components/UI/Stars";
+import { getAunthentication } from "../redux/slices/loginSlice";
+import Spinner from "../components/Spinner";
+import PriceFormat from "../components/Format";
+
 const ProductDetails = () => {
+  // States
   const [tab, setTab] = useState("desc");
   const [rating, setRating] = useState(0);
   const [product, setProduct] = useState(null);
@@ -13,6 +32,7 @@ const ProductDetails = () => {
   const [reviewData, setReview] = useState([]);
   const item_id = parseInt(id);
 
+  // Fetch product data from API
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -34,24 +54,29 @@ const ProductDetails = () => {
     window.scrollTo(0, 300);
   }, [id]);
 
+  // Redirect to home page if not authenticated
   if (!authentication) {
     return <Navigate to="/" replace />;
   }
 
+  // Display a loading spinner while data is being fetched
   if (loading) {
     return <Spinner />;
   }
 
+  // Display error if fetching product fails
   if (error) {
     return <p>{error}</p>;
   }
 
+  // Display a loading spinner if no product data is available yet
   if (!product) {
     return <Spinner />;
   }
 
   const { imgUrl, productName, price, total_rating, reviews, description, shortDisc, category } = product;
 
+  // Handle adding product to the cart
   const addToCart = () => {
     dispatch(
       addItem({
@@ -64,14 +89,36 @@ const ProductDetails = () => {
     toast.success("Product added successfully");
   };
 
-  const relatedProducts = category?.title
-    ? products.filter((item) => item?.category?.title === category?.title)
-    : [];
+  // Get related products based on category
+  const relatedProducts = products.filter((item) => item?.category.title === category?.title);
+
+  // Handle submitting a review
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const reviewUserMsg = reviewMsg?.current.value;
+    const reviewObj = {
+      userName: reviewUser.current.value,
+      text: reviewUserMsg,
+      rating: rating,
+      item_id: item_id,
+    };
+
+    try {
+      const data = await submitReview(reviewObj);
+      setReview((prev) => [...prev, data]);
+      dispatch(updateReview({ data: data, id: id }));
+      toast.success("Review submitted successfully");
+    } catch (error) {
+      toast.error("Failed to submit review");
+    }
+
+    reviewUser.current.value = "";
+    reviewMsg.current.value = "";
+  };
 
   return (
     <Helmet title={productName}>
       <CommonSection title={"Product Detail"} />
-      {/* Render Product Details */}
       <section className="pt-0">
         <Container>
           <Row>
@@ -91,6 +138,7 @@ const ProductDetails = () => {
                   </span>
                 </div>
                 <h2>Key Features</h2>
+                {/* Short Description or Detailed List */}
                 <ul>
                   {shortDisc ? (
                     <li>{shortDisc}</li>
@@ -103,10 +151,15 @@ const ProductDetails = () => {
                   )}
                 </ul>
                 <div className="mt-2">
-                  <span>Category: {category?.title?.toUpperCase() || 'Not available'}</span>
+                  <span>Category: {category?.title?.toUpperCase()}</span>
                 </div>
                 <div className="d-flex align-items-center gap-3 mt-4">
-                  <input type="number" min="1" defaultValue="1" className="quantity__input" />
+                  <input
+                    type="number"
+                    min="1"
+                    defaultValue="1"
+                    className="quantity__input"
+                  />
                   <motion.button
                     whileTap={{ scale: 1.1 }}
                     className="buy__btn"
@@ -121,7 +174,6 @@ const ProductDetails = () => {
         </Container>
       </section>
 
-      {/* Render Reviews */}
       <section>
         <Container>
           <Row>
@@ -146,23 +198,24 @@ const ProductDetails = () => {
                 <div className="product__review mt-5">
                   <div className="review__wrapper">
                     <ul>
-                      {reviewData.length > 0 ? (
-                        reviewData.map((item, index) => (
-                          <li key={index} className="mt-4">
-                            <h6>{item?.userName || 'Anonymous'}</h6>
-                            <span>{item?.rating || 'No rating'} (average rating)</span>
-                            <p>{item?.text || 'No review provided'}</p>
-                          </li>
-                        ))
-                      ) : (
-                        <p>No reviews yet.</p>
-                      )}
+                      {reviewData.map((item, index) => (
+                        <li key={index} className="mt-4">
+                          <h6>{item?.userName}</h6>
+                          <span>{item?.rating} (average rating)</span>
+                          <p>{item?.text}</p>
+                        </li>
+                      ))}
                     </ul>
                     <div className="review__form">
                       <h4>Leave your experience</h4>
                       <form onSubmit={submitHandler}>
                         <div className="form__group">
-                          <input type="text" required placeholder="Enter name" ref={reviewUser} />
+                          <input
+                            type="text"
+                            required
+                            placeholder="Enter name"
+                            ref={reviewUser}
+                          />
                         </div>
                         <div className="form__group d-flex align-items-center gap-5 rating__group">
                           {[1, 2, 3, 4, 5].map((num) => (
@@ -197,6 +250,10 @@ const ProductDetails = () => {
                   </div>
                 </div>
               )}
+              <Col lg="12" className="mt-5">
+                <h2 className="related__title">You might also like</h2>
+              </Col>
+              <ProductsList data={relatedProducts} />
             </Col>
           </Row>
         </Container>
