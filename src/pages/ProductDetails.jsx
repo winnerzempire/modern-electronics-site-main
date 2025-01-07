@@ -55,9 +55,9 @@ const ProductDetails = () => {
   }, [id]);
 
   // Redirect to home page if not authenticated
-  if (!authentication) {
-    return <Navigate to="/" replace />;
-  }
+  // if (!authentication) {
+  //   return <Navigate to="/" replace />;
+  // }
 
   // Display a loading spinner while data is being fetched
   if (loading) {

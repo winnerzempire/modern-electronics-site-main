@@ -59,7 +59,6 @@ const ProductCard = ({ item }) => {
                 to={`/shop/${item.id}`}
                 className="btn btn-sm btn-primary rounded-pill"
                 aria-label={`View details of ${item.productName}`}
-                onClick={() => toast.error(" view details")}
               >
                 View Details
               </Link>
