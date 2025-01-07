@@ -54,7 +54,7 @@ const ProductCard = ({ item }) => {
 
           {/* Buttons */}
           <div className="d-flex flex-column gap-2">
-            {isAuthenticated ? (
+            {/* {isAuthenticated ? ( */}
               <Link
                 to={`/shop/${item.id}`}
                 className="btn btn-sm btn-primary rounded-pill"
@@ -62,7 +62,7 @@ const ProductCard = ({ item }) => {
               >
                 View Details
               </Link>
-            ) : (
+            {/* ) : (
               <Link
               Link to={`/shop/${item.id}`}
                 // className="btn btn-sm btn-danger rounded-pill"
@@ -71,7 +71,7 @@ const ProductCard = ({ item }) => {
               >
                View Details 
               </Link>
-            )}
+            )} */}
 
             <motion.button
               whileTap={{ scale: 0.9 }}
