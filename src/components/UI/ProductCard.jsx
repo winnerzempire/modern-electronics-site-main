@@ -1,15 +1,17 @@
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import "../../styles/product-card.css";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import "./image-style.css";
+import { getAunthentication } from "../../redux/slices/loginSlice";
 import PriceFormat from "../Format";
 
 const ProductCard = ({ item }) => {
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(getAunthentication);
 
   const addToCart = () => {
     dispatch(
@@ -45,20 +47,31 @@ const ProductCard = ({ item }) => {
         {/* Product Details */}
         <div className="product__info p-3 text-center">
           {/* Product Name */}
-          <h5 className="product__name mb-2">{item.productName}</h5>
+          <h5 className="product__name mb-2"> productName ={item.productName}</h5>
 
           {/* Product Price */}
           <PriceFormat price={item.price} className="product__price mb-3" />
 
           {/* Buttons */}
           <div className="d-flex flex-column gap-2">
-            <Link
-              to={`/shop/${item.id}`}
-              className="btn btn-sm btn-primary rounded-pill"
-              aria-label={`View details of ${item.productName}`}
-            >
-              View Details
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                to={`/shop/${item.id}`}
+                className="btn btn-sm btn-primary rounded-pill"
+                aria-label={`View details of ${item.productName}`}
+              >
+                View Details
+              </Link>
+            ) : (
+              <Link
+                to="/shop/:id"
+                className="btn btn-sm btn-danger rounded-pill"
+                onClick={() => toast.error("Log in to view details")}
+                aria-label="Log in to view product"
+              >
+                
+              </Link>
+            )}
 
             <motion.button
               whileTap={{ scale: 0.9 }}
