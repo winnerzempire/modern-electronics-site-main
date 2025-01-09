@@ -52,8 +52,11 @@
   .product__info {
     padding: 15px;
     text-align: center;
+
   }
-  
+  .product__info h5{
+    color: black;
+  }
   .product__name {
     font-size: 1.1rem;
     font-weight: 600;
