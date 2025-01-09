@@ -9,74 +9,79 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         <Row>
-          <Col lg="4" className="mb-4" md="6">
-            <div className="logo">
-              <div className="viqTechLogo">
-                <img src={viqtechLogo} alt="logo" />
-                <h1 className="text-white mt-2">ViqTech</h1>
-              </div>
-            </div>
-          </Col>
-          <Col lg="3" className="mb-4 mt-5" md="3">
-            <div className="footer__quick-links">
-              <h4 className="quick__links-title">Top Category</h4>
-              <ListGroup>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#television">Television</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#cooker">Cookers</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#fridge">Fridge</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#gaming">Gaming</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#sound">Sound Bar and Audio</Link>
-                </ListGroupItem>
-              </ListGroup>
-            </div>
-          </Col>
-          <Col lg="2" className="mb-4" md="3">
-            <div className="footer__quick-links">
-              <h4 className="quick__links-title">Useful Links</h4>
-              <ListGroup>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="/shop">Shop</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="/cart">Cart</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to=".login">Login</Link>
-                </ListGroupItem>
-                <ListGroupItem className="ps-0 border-0">
-                  <Link to="#">Privacy Policy</Link>
-                </ListGroupItem>
-              </ListGroup>
-            </div>
-          </Col>
-          <Col lg="3" md="4">
-            <div className="footer__quick-links">
-              <h4 className="quick__links-title">Contact</h4>
-              <ListGroup className="footer__contact">
-                {/* <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
-                  <span>
-                    <i className="ri-map-pin-line"></i>
-                  </span>
-                  <p>123, Tassia, Embakasi, Nairobi</p>
-                </ListGroupItem> */}
-                <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
-                  <span>
-                    <i className="ri-phone-line"></i>
-                  </span>
-                  <p>+254706542804</p>
-                </ListGroupItem>
-              </ListGroup>
-            </div>
-          </Col>
+        <Row>
+  <Col lg="4" md="6" className="mb-4">
+    <div className="logo">
+      <div className="viqTechLogo">
+        <img src={viqtechLogo} alt="logo" />
+        <h1>ViqTech</h1>
+        <p>
+          We are dedicated to revolutionizing the way you experience technology. 
+          As a premier provider of cutting-edge electronics and comprehensive ICT services, 
+          we deliver innovative solutions tailored to meet the dynamic needs of individuals and businesses alike.
+        </p>
+      </div>
+    </div>
+  </Col>
+
+  <Col lg="3" md="6" className="mb-4">
+    <div className="footer__quick-links">
+      <h4 className="quick__links-title">Top Category</h4>
+      <ListGroup>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#television">Television</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#cooker">Cookers</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#fridge">Fridge</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#gaming">Gaming</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#sound">Sound Bar and Audio</Link>
+        </ListGroupItem>
+      </ListGroup>
+    </div>
+  </Col>
+
+  <Col lg="2" md="6" className="mb-4">
+    <div className="footer__quick-links">
+      <h4 className="quick__links-title">Useful Links</h4>
+      <ListGroup>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="/shop">Shop</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="/cart">Cart</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to=".login">Login</Link>
+        </ListGroupItem>
+        <ListGroupItem className="ps-0 border-0">
+          <Link to="#">Privacy Policy</Link>
+        </ListGroupItem>
+      </ListGroup>
+    </div>
+  </Col>
+
+  <Col lg="3" md="6" className="mb-4">
+    <div className="footer__quick-links">
+      <h4 className="quick__links-title">Contact</h4>
+      <ListGroup className="footer__contact">
+        <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
+          <span>
+            <i className="ri-phone-line"></i>
+          </span>
+          <p>+254706542804</p>
+        </ListGroupItem>
+      </ListGroup>
+    </div>
+  </Col>
+</Row>
+
           <Col lg="12">
             <p className="footer__copyright text-center">
               Copyright &#169; {year} developed by D&W webtech solutions. All
