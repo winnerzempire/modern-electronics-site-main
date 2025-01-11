@@ -1,11 +1,13 @@
-.products-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px; /* Adjust the space between cards */
-    justify-content: center; /* Center align the cards if needed */
-  }
-  /* Category Filter Styles */
+/* Parent container for category filter and products list */
+.container {
+  display: flex;
+  gap: 20px; /* Space between the category filter and product list */
+  align-items: flex-start; /* Align items at the top */
+}
+
+/* Category Filter Styles */
 .category-filter {
+  width: 20%; /* Occupies 20% of the container's width */
   margin: 20px 0;
   padding: 10px;
   text-align: left;
@@ -14,44 +16,56 @@
 .category-filter select {
   font-size: 16px;
   padding: 10px;
-  border: 1px solid #ccc; /* Light border */
+  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff; /* White background */
-  color: black; /* Text color */
-  width: 100%; /* Full width of the parent container */
-  max-width: 300px; /* Max width to prevent it from being too wide */
+  background-color: #fff;
+  color: black;
+  width: 100%;
+  max-width: 300px;
   margin-top: 10px;
-  cursor: pointer; /* Change cursor to pointer for better UX */
+  cursor: pointer;
 }
 
 .category-filter select:focus {
   outline: none;
-  border-color: #333; /* Darker border on focus */
+  border-color: #333;
 }
 
-  
+/* Product List Styles */
+.products-list {
+  width: 75%; /* Occupies 75% of the container's width */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start; /* Align items to the left */
+}
+
+.product-card {
+  flex: 1 1 calc(20% - 16px); /* 5 cards per row */
+  box-sizing: border-box;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 1200px) {
   .product-card {
-    flex: 1 1 calc(20% - 16px); /* Adjusts the width to fit 5 cards per row (20% minus the gap) */
-    box-sizing: border-box; /* Includes padding and border in the element’s total width and height */
-    /* Add other card styles here if needed */
+    flex: 1 1 calc(25% - 16px); /* 4 cards per row */
   }
-  
-  /* Optionally, adjust for responsive design */
-  @media (max-width: 1200px) {
-    .product-card {
-      flex: 1 1 calc(25% - 16px); /* 4 cards per row on smaller screens */
-    }
+}
+
+@media (max-width: 900px) {
+  .product-card {
+    flex: 1 1 calc(33.33% - 16px); /* 3 cards per row */
   }
-  
-  @media (max-width: 900px) {
-    .product-card {
-      flex: 1 1 calc(33.33% - 16px); /* 3 cards per row on medium screens */
-    }
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    flex: 1 1 calc(50% - 16px); /* 2 cards per row */
   }
-  
-  @media (max-width: 600px) {
-    .product-card {
-      flex: 1 1 calc(50% - 16px); /* 2 cards per row on small screens */
-    }
+}
+
+@media (max-width: 400px) {
+  .product-card {
+    flex: 1 1 100%; /* 1 card per row */
   }
-  
+}

@@ -60,33 +60,36 @@ const ProductsList = ({ searchTerm, filterCriteria }) => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      {/* Category Filter */}
-      <div className="category-filter">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.title} {/* Ensure that the category has 'id' and 'title' */}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className="container">
+  {/* Category Filter */}
+  <div className="category-filter">
+    <select
+      value={selectedCategory}
+      onChange={(e) => setSelectedCategory(e.target.value)}
+    >
+      <option value="">All Categories</option>
+      {categories.map((category) => (
+        <option key={category.id} value={category.id}>
+          {category.title}
+        </option>
+      ))}
+    </select>
+  </div>
 
-      {/* Product List */}
-      <div className="products-list">
-        {filteredData.length === 0 ? (
-          <p>No products found</p>
-        ) : (
-          filteredData.map((item) => (
-            <ProductCard key={item.id} item={item} />
-          ))
-        )}
-      </div>
-    </div>
+  {/* Product List */}
+  <div className="products-list">
+    {filteredData.length === 0 ? (
+      <p>No products found</p>
+    ) : (
+      filteredData.map((item) => (
+        <div className="product-card" key={item.id}>
+          <ProductCard item={item} />
+        </div>
+      ))
+    )}
+  </div>
+</div>
+
   );
 };
 
