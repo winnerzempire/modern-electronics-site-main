@@ -41,7 +41,7 @@
 }
 
 .product-card {
-  flex: 0 0  calc(25% - 16px); /* 4 cards per row */
+  flex: 0 0  calc(25% ); /* 4 cards per row */
   box-sizing: border-box;
 }
 
