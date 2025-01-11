@@ -35,11 +35,13 @@
 
 /* Product List Styles */
 .products-list {
-  width: 75%; /* Occupies 75% of the container's width */
+  width: 100%; /* Allow it to stretch to the full container width */
+  max-width: 1200px; /* Optional: Limit the width for readability */
+  margin: 0 auto; /* Center the list on larger screens */
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: flex-start; /* Align items to the left */
+  justify-content: flex-start; /* Or use center for centered layout */
 }
 
 .product-card {
