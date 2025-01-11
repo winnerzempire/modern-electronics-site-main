@@ -1,7 +1,5 @@
 /* Parent container for category filter and products list */
-.list{
-  height: 100%;
-  width: 100%;
+.list {
   display: flex;
   gap: 20px; /* Space between the category filter and product list */
   align-items: flex-start; /* Align items at the top */
@@ -41,7 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: flex-start; /* Or use center for centered layout */
+  justify-content: center; /* Or use center for centered layout */
 }
 
 .product-card {
