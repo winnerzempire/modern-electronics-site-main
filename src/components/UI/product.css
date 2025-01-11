@@ -33,7 +33,7 @@
 
 /* Product List Styles */
 .products-list {
-  width: 75%; /* Occupies 75% of the container's width */
+  width: 100%; /* Occupies 75% of the container's width */
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
