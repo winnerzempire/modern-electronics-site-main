@@ -33,7 +33,7 @@
 
 /* Product List Styles */
 .products-list {
-  width: 100%; /* Occupies 75% of the container's width */
+  width: 70%; /* Occupies 75% of the container's width */
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -41,7 +41,7 @@
 }
 
 .product-card {
-  flex: 1 1 calc(20% - 16px); /* 5 cards per row */
+  flex: 1 1 calc(25% - 16px); /* 4 cards per row */
   box-sizing: border-box;
 }
 
