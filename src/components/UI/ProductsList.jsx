@@ -60,7 +60,7 @@ const ProductsList = ({ searchTerm, filterCriteria }) => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="list">
+  <div className="list">
   {/* Category Filter */}
   <div className="category-filter">
     <select

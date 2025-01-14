@@ -1,13 +1,14 @@
-/* Parent container for category filter and products list */
 .list {
   display: flex;
-  gap: 20px; /* Space between the category filter and product list */
-  align-items: flex-start; /* Align items at the top */
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Category Filter Styles */
 .category-filter {
-  width: 20%; /* Occupies 20% of the container's width */
+  width: 20%;
   margin: 20px 0;
   padding: 10px;
   text-align: left;
@@ -19,56 +20,74 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  color: black;
   width: 100%;
   max-width: 300px;
   margin-top: 10px;
   cursor: pointer;
 }
 
-.category-filter select:focus {
-  outline: none;
-  border-color: #333;
-}
-
-/* Product List Styles */
 .products-list {
-  width: 100%; /* Allow it to stretch to the full container width */
-  max-width: 1200px; /* Optional: Limit the width for readability */
-  margin: 0 auto; /* Center the list on larger screens */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: center; /* Or use center for centered layout */
+  justify-content: center;
 }
 
 .product-card {
-  flex: 0 0  calc(25% ); /* 4 cards per row */
+  flex: 0 0 calc(25% - 16px);
   box-sizing: border-box;
-  min-width: 240px; /* Adjust this value based on your design */
+  min-width: 240px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card .product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.product-card .product-price {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+  text-align: center;
 }
 
 /* Responsive Design Adjustments */
 @media (max-width: 1200px) {
   .product-card {
-    flex: 1 1 calc(25% - 16px); /* 4 cards per row */
+    flex: 1 1 calc(25% - 16px);
   }
 }
 
 @media (max-width: 900px) {
   .product-card {
-    flex: 1 1 calc(33.33% - 16px); /* 3 cards per row */
+    flex: 1 1 calc(33.33% - 16px);
   }
 }
 
 @media (max-width: 600px) {
   .product-card {
-    flex: 1 1 calc(50% - 16px); /* 2 cards per row */
+    flex: 1 1 calc(50% - 16px);
   }
 }
 
 @media (max-width: 400px) {
   .product-card {
-    flex: 1 1 100%; /* 1 card per row */
+    flex: 1 1 100%;
   }
 }
