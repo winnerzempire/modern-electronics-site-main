@@ -24,9 +24,9 @@
     }
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 780px) {
     .product-card {
-      flex: 1 1 calc(50% - 16px); /* 2 cards per row on small screens */
+      flex: 1 1 100%; /* 1 card per row */
     }
   }
   
