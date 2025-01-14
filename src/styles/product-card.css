@@ -134,10 +134,10 @@
 /* Medium devices (max-width: 768px) */
 @media (max-width: 768px) {
   .product-card {
-    max-width: 45%; /* Two cards per row on medium screens */
-    margin: 10px;
+    max-width: 100%; /* Each card takes up 100% of the container width */
+    margin: 10px 0; /* Add spacing between cards */
+    flex: 1 1 100%; /* Ensures that cards are stacked vertically (1 per row) */
   }
-
   .product-image {
     height: 180px;
   }
