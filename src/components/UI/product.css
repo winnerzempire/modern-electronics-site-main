@@ -18,11 +18,6 @@
     }
   }
   
-  @media (max-width: 900px) {
-    .product-card {
-      flex: 1 1 calc(33.33% - 16px); /* 3 cards per row on medium screens */
-    }
-  }
   
   @media (max-width: 780px) {
     .product-card {
