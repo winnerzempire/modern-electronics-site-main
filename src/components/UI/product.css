@@ -14,7 +14,7 @@
   /* Optionally, adjust for responsive design */
   @media (max-width: 1200px) {
     .product-card {
-      flex: 1 1 calc(25% - 16px); /* 4 cards per row on smaller screens */
+      flex: 1 1 calc(20% - 16px); /* 4 cards per row on smaller screens */
     }
   }
   
