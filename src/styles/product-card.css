@@ -103,6 +103,10 @@
   color: #fff;
 }
 
+.ri-add-line{
+  background-color: #007bff;
+}
+
 /* Media Queries */
 
 /* Small devices (max-width: 576px) */
