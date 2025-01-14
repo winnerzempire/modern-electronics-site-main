@@ -65,6 +65,12 @@
   margin-bottom: 15px;
   font-weight: bold;
 }
+.product__price-card {
+  font-size: 18px;
+  color: #007bff;
+  font-weight: bold;
+  padding: 5px 10px;
+}
 
 .product-buttons {
   display: flex;
