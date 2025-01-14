@@ -105,34 +105,36 @@
 /* Media Queries */
 
 /* Small devices (max-width: 576px) */
+/* Small screens (max-width: 576px) */
 @media (max-width: 576px) {
   .product-card {
-    max-width: 100%;
-    margin: 10px 0;
+    max-width: 100%; /* Each card takes up 100% of the container width */
+    margin: 10px 0; /* Add spacing between cards */
+    flex: 1 1 100%; /* Ensures that cards are stacked vertically (1 per row) */
   }
 
   .product-image {
-    height: 150px;
+    height: 150px; /* Adjust image height for small screens */
   }
 
   .product-name {
-    font-size: 16px;
+    font-size: 16px; /* Adjust font size for small screens */
   }
 
   .product-price {
-    font-size: 14px;
+    font-size: 14px; /* Adjust font size for small screens */
   }
 
   .btn {
     padding: 8px;
-    font-size: 12px;
+    font-size: 12px; /* Adjust button padding and font size for small screens */
   }
 }
 
 /* Medium devices (max-width: 768px) */
 @media (max-width: 768px) {
   .product-card {
-    max-width: 45%;
+    max-width: 45%; /* Two cards per row on medium screens */
     margin: 10px;
   }
 
@@ -152,7 +154,7 @@
 /* Large devices (max-width: 992px) */
 @media (max-width: 992px) {
   .product-card {
-    max-width: 30%;
+    max-width: 30%; /* Three cards per row on larger screens */
     margin: 10px;
   }
 
