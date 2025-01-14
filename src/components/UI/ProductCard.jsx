@@ -26,7 +26,7 @@ const ProductCard = ({ item }) => {
   };
 
   return (
-    <Col lg="3" md="4" sm="12" className="product__card-column">
+    <Col lg="3" md="4" sm="6" xs="12" className="product__card-column">
       <motion.div
         whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)" }}
         className="product__card shadow-sm rounded overflow-hidden"
