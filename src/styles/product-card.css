@@ -101,3 +101,16 @@
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%; /* Make each card take full width */
+    max-width: 100%; /* Ensure it doesn't shrink */
+    margin: 10px 0; /* Add vertical spacing between cards */
+  }
+
+  .product-card-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center cards horizontally */
+  }
+}
