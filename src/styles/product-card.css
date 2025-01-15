@@ -114,3 +114,32 @@
     align-items: center; /* Center cards horizontally */
   }
 }
+@media (max-width: 576px) {
+  .product-card {
+    width: 100%; /* Take up full width of the container */
+    margin: 10px 0; /* Add vertical spacing between cards */
+  }
+
+  .product-card-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center cards horizontally */
+  }
+
+  .product-image {
+    height: 150px; /* Adjust image height for small screens */
+  }
+
+  .product-name {
+    font-size: 16px; /* Smaller font size for the product name */
+  }
+
+  .product-price {
+    font-size: 14px; /* Smaller font size for the price */
+  }
+
+  .btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
