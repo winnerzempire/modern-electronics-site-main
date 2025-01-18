@@ -7,15 +7,22 @@ import { toast } from "react-toastify";
 import PriceFormat from "../Format";
 
 const ProductCard = ({ item }) => {
+  // If the item is undefined or null, we return a loading state or fallback message
+  if (!item) {
+    return <div className="loading">Loading...</div>;
+  }
+
   const dispatch = useDispatch();
 
+  // Add item to the cart
   const addToCart = () => {
+    // Safely access item properties with optional chaining
     dispatch(
       addItem({
-        id: item.id,
-        productName: item.productName,
-        price: item.price,
-        imgUrl: item.imgUrl,
+        id: item?.id,
+        productName: item?.productName,
+        price: item?.price,
+        imgUrl: item?.imgUrl,
       })
     );
     toast.success("Product added to cart!");
@@ -45,12 +52,12 @@ const ProductCard = ({ item }) => {
           <h5 className="product-name">{item.productName}</h5>
           <PriceFormat price={item.price} className="product-price" />
           <div className="product-buttons">
-            <Link to={`/shop/${item.id}`} className="btn view-details">
+            <Link to={`/shop/${item.id}`} className="view-details">
               View Details
             </Link>
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className="btn add-to-cart"
+              className="add-to-cart"
               onClick={addToCart}
             >
               <i className="ri-add-line"></i> Add to Cart
