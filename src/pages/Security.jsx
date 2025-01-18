@@ -1,8 +1,8 @@
 import React from 'react'
 import "./Security.css"
-import videowalls from '../assets/images/videowalls.png'
-import meetingrooms from '../assets/images/meetingrooms.png'
-import displayprojector from '../assets/images/displayprojector.webp'
+import videosurveillance from '../assets/images/video-surveillance.png'
+import accesscontrol from '../assets/images/accesscontrol.png'
+import fireevacuation from '../assets/images/fireevacuation.webp'
 import samsung from '../assets/images/samsung-logo.png'
 import shure from '../assets/images/shure.png'
 import logitech from '../assets/images/logitech.png'
@@ -34,7 +34,7 @@ const Audiovisual = () => {
       <section className="image-text-section">
         <div className="container">
           <div className="image-container">
-            <img src={meetingrooms} alt="Description of image" />
+            <img src={accesscontrol} alt="Description of image" />
           </div>
           <div className="text-container">
             <h2>ACCESS CONTROL</h2>
@@ -53,7 +53,7 @@ const Audiovisual = () => {
       <section className="videowalls">
         <div className="container">
           <div className="image-container">
-            <img src={videowalls} alt="Description of image" />
+            <img src={fireevacuation} alt="Description of image" />
           </div>
           <div className="text-container">
             <h2>FIRE EVACUATION</h2>
@@ -72,7 +72,7 @@ const Audiovisual = () => {
       <section className="bgm">
         <div className="container">
           <div className="image-container">
-            <img src={meetingrooms} alt="Description of image" />
+            <img src={videosurveillance } alt="Description of image" />
           </div>
           <div className="text-container">
             <h2>VIDEO SURVEILLANCE</h2>
