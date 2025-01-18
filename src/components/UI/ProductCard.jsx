@@ -45,12 +45,12 @@ const ProductCard = ({ item }) => {
           <h5 className="product-name">{item.productName}</h5>
           <PriceFormat price={item.price} className="product-price" />
           <div className="product-buttons">
-            <Link to={`/shop/${item.id}`} className="view-details">
+            <Link to={`/shop/${item.id}`} className="btn view-details">
               View Details
             </Link>
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className="add-to-cart"
+              className="btn add-to-cart"
               onClick={addToCart}
             >
               <i className="ri-add-line"></i> Add to Cart
