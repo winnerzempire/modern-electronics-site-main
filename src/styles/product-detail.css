@@ -179,6 +179,12 @@
     font-weight: 600;
     margin-bottom: 20px;
   }
+
+  ul {
+    list-style-type: disc; /* Ensure bullets are shown */
+    padding-left: 20px;    /* Indent the list */
+  }
+  
   
   /* Responsive Styles */
   @media (max-width: 768px) {

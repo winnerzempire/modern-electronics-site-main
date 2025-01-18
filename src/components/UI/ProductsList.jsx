@@ -1,93 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
-import axios from 'axios';
-import './product.css'; // Import the CSS file
+import { motion } from "framer-motion";
+import "../../styles/product-card.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
+import { toast } from "react-toastify";
+import PriceFormat from "../Format";
 
-const ProductsList = ({ searchTerm, filterCriteria }) => {
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
+const ProductCard = ({ item }) => {
+  const dispatch = useDispatch();
 
-  // Fetch products and categories from the API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch categories
-        const categoryResponse = await axios.get('https://viqtech.co.ke/api/products/');
-        setCategories(categoryResponse.data);
-
-        // Fetch products
-        const productResponse = await axios.get('https://viqtech.co.ke/api/products/products/');
-        setData(productResponse.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Filter products based on selected category, search term, and filterCriteria
-  useEffect(() => {
-    let filtered = data;
-
-    if (selectedCategory) {
-      filtered = filtered.filter(
-        (item) => item.category?.id.toString() === selectedCategory // Ensure type consistency
-      );
-    }
-
-    if (filterCriteria) {
-      filtered = filtered.filter(filterCriteria);
-    }
-
-    if (searchTerm) {
-      const searchTermLower = searchTerm.toLowerCase();
-      filtered = filtered.filter((item) =>
-        item.productName?.toLowerCase().includes(searchTermLower)
-      );
-    }
-
-    setFilteredData(filtered);
-  }, [data, selectedCategory, filterCriteria, searchTerm]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const addToCart = () => {
+    dispatch(
+      addItem({
+        id: item.id,
+        productName: item.productName,
+        price: item.price,
+        imgUrl: item.imgUrl,
+      })
+    );
+    toast.success("Product added to cart!");
+  };
 
   return (
-    <div>
-      {/* Category Filter */}
-      <div className="category-filter">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.title} {/* Ensure that the category has 'id' and 'title' */}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className="product-card">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="product-card-inner"
+      >
+        {/* Product Image */}
+        <div className="product-image">
+          <Link to={`/shop/${item.id}`}>
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              src={item.imgUrl}
+              alt={item.productName}
+              className="product-img"
+            />
+          </Link>
+          <span className="product-badge">New</span>
+        </div>
 
-      {/* Product List */}
-      <div className="products-list">
-        {filteredData.length === 0 ? (
-          <p>No products found</p>
-        ) : (
-          filteredData.map((item) => (
-            <ProductCard key={item.id} item={item} />
-          ))
-        )}
-      </div>
+        {/* Product Details */}
+        <div className="product-info">
+          <h5 className="product-name">{item.productName}</h5>
+          <PriceFormat price={item.price} className="product-price" />
+          <div className="product-buttons">
+            <Link to={`/shop/${item.id}`} className="view-details">
+              View Details
+            </Link>
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className="add-to-cart"
+              onClick={addToCart}
+            >
+              <i className="ri-add-line"></i> Add to Cart
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
 
-export default ProductsList;
+export default ProductCard;
