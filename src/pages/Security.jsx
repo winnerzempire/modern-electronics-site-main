@@ -2,7 +2,7 @@ import React from 'react'
 import "./Security.css"
 import videosurveillance from '../assets/images/video-surveillance.png'
 import accesscontrol from '../assets/images/accesscontrol.png'
-import fireevacuation from '../assets/images/fireevacuation.webp'
+import fireevacuation from '../assets/images/fireevaculation.webp'
 import samsung from '../assets/images/samsung-logo.png'
 import shure from '../assets/images/shure.png'
 import logitech from '../assets/images/logitech.png'
