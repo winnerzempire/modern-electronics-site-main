@@ -30,6 +30,7 @@ import Infotainment from './pages/infotainment';
 import Audio from './pages/Audiovisual'
 import Security from './pages/Security'
 import Greensolutions from './pages/Greensolutions';
+import Backofhouse from './pages/Backofhouse';
 
 
 const router = createBrowserRouter(
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
       <Route path="/services/Audiovisual" element={<Audio />} />
       <Route path="/services/Security" element={<Security />} />
       <Route path="/services/Greensolutions" element={<Greensolutions />} />
+      <Route path="/services/Backofhouse" element={<Backofhouse />} />
     </Route>
   )
 );

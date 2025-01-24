@@ -31,9 +31,10 @@ const Services = () => {
       link:"/services/infotainment"
     },
     {
-      title: "Smart Homes",
+      title: "Back of House",
       description: "Design intuitive and user-friendly interfaces.",
       image:  smarthomeimage,
+      link:"/services/Backofhouse"
     },
     {
       title: "Green Solutions",
