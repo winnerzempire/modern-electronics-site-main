@@ -1,8 +1,8 @@
 import React from 'react'
 import "./Security.css"
-import homeAutomationmain from '../assets/images/homeAutomationmain.png'
-import GuestRoom from '../assets/images/Guest-Room.jpg'
-import solutionmanagement from '../assets/images/solution-managment.png'
+import printers from '../assets/images/printers.png'
+import laptops from '../assets/images/laptops.png'
+import servers from '../assets/images/servers.png'
 import samsung from '../assets/images/samsung-logo.png'
 import shure from '../assets/images/shure.png'
 import logitech from '../assets/images/logitech.png'
@@ -19,15 +19,16 @@ const Audiovisual = () => {
       <section className="image-text-section">
         <div className="container">
           <div className="image-container">
-            <h2>GREEN SOLUTIONS </h2>
+            <h2>BACK OF HOUSE </h2>
             <p>Embrace Efficiency, Elevate Experiences: The Power of Automation Solutions</p>
           </div>
           <div className="text-container">
+            <p>Empower Your Digital Landscape: The Backbone of Modern IT Infrastructure</p>
             <p>
-            In today’s dynamic world, maximizing efficiency and creating impactful experiences are fundamental to success. 
-            Our comprehensive automation solutions empower you to achieve just that, 
-            offering a robust suite of tools to take control, optimize operations, 
-            and unlock a world of possibilities across various industries and settings.
+            In an increasingly connected world, having the right hardware is crucial for driving productivity, 
+            ensuring security, and maintaining seamless operations. 
+            Our diverse range of hardware solutions, including servers, laptops & computers, and printers, 
+            provides the reliable foundation you need to excel in today’s fast-paced digital environment.
             </p>
           </div>
         </div>
@@ -36,12 +37,13 @@ const Audiovisual = () => {
       <section className="image-text-section">
         <div className="container">
           <div className="image-container">
-            <img src={solutionmanagement} alt="Description of image" />
+            <img src={servers} alt="Description of image" />
           </div>
           <div className="text-container">
-            <h2>BUILDING MANAGEMENT SYSTEMS (BMS) </h2>
+            <h2>SERVERS</h2>
             <p>
-            Take complete control of your building’s environment, optimize energy consumption, and ensure occupant comfort.
+            Harness the power of our robust server solutions designed to meet the demands of modern businesses. From small enterprises to large corporations,
+             our servers provide the scalability, security, and performance necessary to support your critical applications and data.
             </p>
           </div>
         </div>
@@ -50,13 +52,13 @@ const Audiovisual = () => {
       <section className="videowalls">
         <div className="container">
           <div className="image-container">
-            <img src={ GuestRoom } alt="Description of image" />
+            <img src={ laptops } alt="Description of image" />
           </div>
           <div className="text-container">
-            <h2>GUEST ROOM MANAGEMENT SYSTEMS (GRMS)</h2>
+            <h2>LAPTOPS AND COMPUTERS</h2>
             <p>
-            Elevate guest experiences in hospitality settings, personalize comfort, and streamline operations.
-            And more: We offer additional solutions tailored to specific industries and applications.
+            At Viqtech we Equip your workforce with powerful and efficient laptops and computers. Whether for everyday tasks, creative projects, or 
+            intensive computing, our range of devices ensures that your team has the right tools to succeed, wherever they are.
             </p>
           </div>
         </div>
@@ -65,13 +67,13 @@ const Audiovisual = () => {
       <section className="bgm">
         <div className="container">
           <div className="image-container">
-            <img src={homeAutomationmain } alt="Description of image" />
+            <img src={printers } alt="Description of image" />
           </div>
           <div className="text-container">
-            <h2>HOME AUTOMATION</h2>
-            <p>Experience the future of living and working</p>
+            <h2>PRINTERS</h2>
             <p>
-            At Viqtech we take complete control of your building’s environment, optimize energy consumption, and ensure occupant comfort.
+            Experience reliability and efficiency with our state-of-the-art printers. From high-speed document printing to specialized graphic outputs, 
+            our printers cater to all your needs, enhancing productivity in both office and remote work settings.
             </p>
           </div>
         </div>
@@ -82,9 +84,9 @@ const Audiovisual = () => {
       <section className="solutions">
         <div className="container">
           <div className="text-solutions">
-            <h2>Green Solutions We Provide</h2>
+            <h2>Back Of House Solutions We Provide</h2>
             <p>
-            Our solutions are designed to enhance security, streamline emergency responses, and maintain a secure environment.
+            eliver reliable and secure high-performance applications and accelerate compute-intensive workloads inside traditional data centers or in extreme conditions at the edge.
             </p>
           </div>
           <div className='image'>
