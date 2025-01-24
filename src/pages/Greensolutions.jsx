@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Security.css"
 import homeAutomationmain from '../assets/images/homeAutomationmain.png'
-import GuestRoom from '../assets/images/Guest-Room.png'
+import GuestRoom from '../assets/images/Guest-Room.jpg'
 import solutionmanagement from '../assets/images/solution-management.png'
 import samsung from '../assets/images/samsung-logo.png'
 import shure from '../assets/images/shure.png'
