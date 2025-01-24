@@ -39,6 +39,7 @@ const Services = () => {
       title: "Green Solutions",
       description: "Implement scalable and secure cloud systems.",
       image: greensolutionsimage,
+      link:"/services/Greensolutions"
     },
     {
       title: "Security Systems",
